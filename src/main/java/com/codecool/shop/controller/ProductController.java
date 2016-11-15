@@ -2,13 +2,8 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
-import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
-import com.codecool.shop.dao.implementation.SupplierDaoMem;
-import com.codecool.shop.model.Product;
-import com.codecool.shop.model.ProductCategory;
-import com.codecool.shop.model.Supplier;
 
 import spark.Request;
 import spark.Response;
@@ -20,15 +15,15 @@ import java.util.Map;
 public class ProductController {
 
     public static ModelAndView renderProducts(Request req, Response res) {
-        return commonBabyLightMyFire(0);
+        return categoryFilterHandler(0);
     }
 
     public static ModelAndView renderProductsByCategory(Request req, Response res) {
         int categoryId = Integer.parseInt(req.params(":categoryId"));
-        return commonBabyLightMyFire(categoryId);
+        return categoryFilterHandler(categoryId);
     }
 
-    private static ModelAndView commonBabyLightMyFire(int categoryId) {
+    private static ModelAndView categoryFilterHandler(int categoryId) {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
 
