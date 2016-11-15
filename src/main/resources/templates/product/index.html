@@ -34,8 +34,9 @@
 </div>
 
 <div class="container">
-    <div class="well well-sm">
-        <strong th:text="${category.name}">Category Title</strong>
+    <h2 th:text="${currCategory.name}">Current Category</h2>
+    <div class="btn-group">
+        <a class="btn btn-primary" href="/hello" th:each="cat : ${categories}" th:text="${cat.name}" th:id="${cat.id}">Category Title</a>
     </div>
 
     <div id="products" class="row list-group">
