@@ -20,29 +20,26 @@ import java.util.Map;
 public class ProductController {
 
     public static ModelAndView renderProducts(Request req, Response res) {
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-
-        System.out.println(productCategoryDataStore.find(1).getId());
-
-        Map params = new HashMap<>();
-        params.put("currCategory", productCategoryDataStore.find(1));
-        params.put("categories", productCategoryDataStore.getAll());
-        params.put("products", productDataStore.getAll());
-        return new ModelAndView(params, "product/index");
+        return commonBabyLightMyFire(0);
     }
 
     public static ModelAndView renderProductsByCategory(Request req, Response res) {
-        int categoryId = Integer.parseInt(req.params(":category"));
+        int categoryId = Integer.parseInt(req.params(":categoryId"));
+        return commonBabyLightMyFire(categoryId);
+    }
+
+    private static ModelAndView commonBabyLightMyFire(int categoryId) {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
 
         Map params = new HashMap<>();
-        params.put("currCategory", productCategoryDataStore.find(categoryId));
-        params.put("category", productCategoryDataStore.find(categoryId));
-        params.put("products", productDataStore.getBy(productCategoryDataStore.find(categoryId)));
+        params.put("categories", productCategoryDataStore.getAll());
+        if (categoryId == 0) {
+            params.put("products", productDataStore.getAll());
+        } else {
+            params.put("currCategory", productCategoryDataStore.find(categoryId));
+            params.put("products", productDataStore.getBy(productCategoryDataStore.find(categoryId)));
+        }
         return new ModelAndView(params, "product/index");
-
     }
-
 }

@@ -29,7 +29,7 @@ public class Main {
         enableDebugScreen();
 
         // dynamic route for categories
-        get("/category/:category", ProductController::renderProductsByCategory, new ThymeleafTemplateEngine());
+        get("/category/:categoryId", ProductController::renderProductsByCategory, new ThymeleafTemplateEngine());
     }
 
     public static void populateData() {
@@ -45,8 +45,6 @@ public class Main {
         supplierDataStore.add(lenovo);
 
         //setting up a new product category
-        ProductCategory allCategories = new ProductCategory("All", "All", "All categories");
-        productCategoryDataStore.add(allCategories);
         ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
         productCategoryDataStore.add(tablet);
         ProductCategory notebook = new ProductCategory("Notebook", "Hardware", "A notebook for people that is very nice and useful.");
