@@ -45,8 +45,12 @@ public class Main {
         supplierDataStore.add(lenovo);
 
         //setting up a new product category
+        ProductCategory allCategories = new ProductCategory("All", "All", "All categories");
+        productCategoryDataStore.add(allCategories);
         ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
         productCategoryDataStore.add(tablet);
+        ProductCategory notebook = new ProductCategory("Notebook", "Hardware", "A notebook for people that is very nice and useful.");
+        productCategoryDataStore.add(notebook);
 
         //setting up products and printing it
         productDataStore.add(new Product("Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));

@@ -23,6 +23,8 @@ public class ProductController {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
 
+        System.out.println(productCategoryDataStore.find(1).getId());
+
         Map params = new HashMap<>();
         params.put("currCategory", productCategoryDataStore.find(1));
         params.put("categories", productCategoryDataStore.getAll());
@@ -36,6 +38,7 @@ public class ProductController {
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
 
         Map params = new HashMap<>();
+        params.put("currCategory", productCategoryDataStore.find(categoryId));
         params.put("category", productCategoryDataStore.find(categoryId));
         params.put("products", productDataStore.getBy(productCategoryDataStore.find(categoryId)));
         return new ModelAndView(params, "product/index");
