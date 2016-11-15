@@ -29,4 +29,16 @@ public class ProductController {
         return new ModelAndView(params, "product/index");
     }
 
+    public static ModelAndView renderProductsByCategory(Request req, Response res) {
+        int categoryId = Integer.parseInt(req.params(":category"));
+        ProductDao productDataStore = ProductDaoMem.getInstance();
+        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+
+        Map params = new HashMap<>();
+        params.put("category", productCategoryDataStore.find(categoryId));
+        params.put("products", productDataStore.getBy(productCategoryDataStore.find(categoryId)));
+        return new ModelAndView(params, "product/index");
+
+    }
+
 }

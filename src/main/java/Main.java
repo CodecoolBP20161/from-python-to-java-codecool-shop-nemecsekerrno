@@ -27,6 +27,9 @@ public class Main {
 
         // Add this line to your project to enable the debug screen
         enableDebugScreen();
+
+        // dynamic route for categories
+        get("/category/:category", ProductController::renderProductsByCategory, new ThymeleafTemplateEngine());
     }
 
     public static void populateData() {
