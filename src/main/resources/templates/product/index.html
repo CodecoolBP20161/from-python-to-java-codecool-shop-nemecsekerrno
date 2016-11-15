@@ -39,7 +39,7 @@
         <a class="btn btn-primary" href="/">All</a>
         <a class="btn btn-primary" th:each="cat : ${categories}" th:href="'/category/' + ${cat.id}" th:text="${cat.name}" th:id="${cat.id}">Category Title</a>
     </div>
-
+    <div><br /></div>
     <div id="products" class="row list-group">
 
         <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
