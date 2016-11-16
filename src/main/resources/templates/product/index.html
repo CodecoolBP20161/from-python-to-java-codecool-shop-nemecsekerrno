@@ -34,13 +34,15 @@
 </div>
 
 <div class="container">
-    <h2 th:text="*{currCategory != null}? *{currCategory.name} : 'All products'">Current Category</h2>
+    <h2 th:text="*{currFilter != null}? *{currFilter.name} : 'All products'">Current Filter</h2>
+    <div class="btn-group"><a class="btn btn-primary" href="/">All</a></div>
     <div class="btn-group">
-        <a class="btn btn-primary" href="/">All</a>
         <a class="btn btn-primary" th:each="cat : ${categories}" th:href="'/category/' + ${cat.id}" th:text="${cat.name}" th:id="${cat.id}">Category Title</a>
     </div>
+    <div class="btn-group">
+        <a class="btn btn-primary" th:each="sup : ${suppliers}" th:href="'/supplier/' + ${sup.id}" th:text="${sup.name}" th:id="${sup.id}">Supplier Title</a>
+    </div>
     <div id="products" class="row list-group">
-
         <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="thumbnail">
                 <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt="" />
