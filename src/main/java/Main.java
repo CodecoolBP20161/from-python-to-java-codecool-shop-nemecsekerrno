@@ -25,11 +25,13 @@ public class Main {
         // Always add generic routes to the end
         get("/", ProductController::renderProducts, new ThymeleafTemplateEngine());
 
+        // dynamic route for categories
+        get("/category/:id", ProductController::renderProductsByCategory, new ThymeleafTemplateEngine());
+
+        get("/supplier/:id", ProductController::renderProductsBySupplier, new ThymeleafTemplateEngine());
+
         // Add this line to your project to enable the debug screen
         enableDebugScreen();
-
-        // dynamic route for categories
-        get("/category/:categoryId", ProductController::renderProductsByCategory, new ThymeleafTemplateEngine());
     }
 
     public static void populateData() {

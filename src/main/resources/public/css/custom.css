@@ -1,3 +1,7 @@
+.btn-group {
+    padding-bottom: 15px;
+}
+
 .glyphicon {
     margin-right:5px;
 }
@@ -12,6 +16,11 @@
 .thumbnail img
 {
     margin-top: 10px;
+}
+.row
+{
+    display: flex;
+    flex-wrap: wrap;
 }
 .item.list-group-item
 {
