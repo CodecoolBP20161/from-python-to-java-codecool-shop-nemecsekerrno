@@ -17,6 +17,11 @@
 {
     margin-top: 10px;
 }
+.row
+{
+    display: flex;
+    flex-wrap: wrap;
+}
 .item.list-group-item
 {
     float: none;
