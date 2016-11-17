@@ -26,83 +26,68 @@
 
     <link rel="stylesheet" type="text/css" href="/css/custom.css" />
 </head>
-
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand">Codecool Webshop</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a  href="/">Home</a></li>
-        </ul>
-        <div class="cart">
-            <button class="btn btn-warning" type="button">
-                <span class="glyphicon glyphicon-piggy-bank"> </span>
-                <span th:text="*{cartItemTotal != null}? *{cartItemTotal} +'' : '0'"></span>
-            </button>
-        </div>
-    </div>
-</nav>
-<div class="container">
-    <h2 th:text="*{currFilter != null}? *{currFilter.name} : 'All products'">Current Filter</h2>
-    <div><a class="btn btn-primary" href="/">All</a>
-        <div class="dropdown category-drop">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Categories
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li><a th:each="cat : ${categories}" th:href="'/category/' + ${cat.id}" th:text="${cat.name}" th:id="${cat.id}">Category Title</a></li>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">Codecool Webshop</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a  href="/">Home</a></li>
             </ul>
+            <div class="cart">
+                <button class="btn btn-warning" type="button">
+                    <span class="glyphicon glyphicon-piggy-bank"> </span>
+                    <span th:text="*{cartItemTotal != null}? *{cartItemTotal} +'' : '0'"></span>
+                </button>
+            </div>
         </div>
-
-        <div class="dropdown supplier-drop">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Supplier
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li><a th:each="sup : ${suppliers}" th:href="'/supplier/' + ${sup.id}" th:text="${sup.name}" th:id="${sup.id}">Supplier Title</a></li>
-            </ul>
+    </nav>
+    <div class="container">
+        <h2 th:text="*{currFilter != null}? *{currFilter.name} : 'All products'">Current Filter</h2>
+        <div><a class="btn btn-primary" href="/">All</a>
+            <div class="dropdown category-drop">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Categories
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a th:each="cat : ${categories}" th:href="'/category/' + ${cat.id}" th:text="${cat.name}" th:id="${cat.id}">Category Title</a></li>
+                </ul>
+            </div>
+            <div class="dropdown supplier-drop">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Supplier
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a th:each="sup : ${suppliers}" th:href="'/supplier/' + ${sup.id}" th:text="${sup.name}" th:id="${sup.id}">Supplier Title</a></li>
+                </ul>
+            </div>
         </div>
-        <!--<div>-->
-            <!--<button class="btn btn-info" type="button" href="#" th:text="*{cartItemTotal != null}? *{cartItemTotal} + ' Product(s)' : '0 Products'">-->
-                <!--Cart summary-->
-            <!--</button>-->
-        <!--</div>-->
-    </div>
-
-
-    <!--<div class="btn-group">-->
-        <!--<a class="btn btn-primary" th:each="sup : ${suppliers}" th:href="'/supplier/' + ${sup.id}" th:text="${sup.name}" th:id="${sup.id}">Supplier Title</a>-->
-    <!--</div>-->
-    <div id="products" class="row list-group">
-        <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
-            <div class="thumbnail">
-                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt="" />
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading" th:text="${prod.name}">Product name</h4>
-                    <p class="group inner list-group-item-text" th:text="${prod.description}">Product description... </p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <form th:action="'/cart/add_product/' + ${prod.id}">
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-success" th:prodID="${prod.id}">Add to cart</button>
-                                    </span>
-                                    <input class="form-control" aria-describedby="basic-addon2" type="number" min="1" max="40" step="1" name="prodQty" value="1"></input>
-                                </div>
-                            </form>
+        <div id="products" class="row list-group">
+            <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
+                <div class="thumbnail">
+                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt="" />
+                    <div class="caption">
+                        <h4 class="group inner list-group-item-heading" th:text="${prod.name}">Product name</h4>
+                        <p class="group inner list-group-item-text" th:text="${prod.description}">Product description... </p>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <form th:action="'/cart/add_product/' + ${prod.id}">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button type="submit" class="btn btn-success" th:prodID="${prod.id}">Add to cart</button>
+                                        </span>
+                                        <input class="form-control" aria-describedby="basic-addon2" type="number" min="1" max="40" step="1" name="prodQty" value="1"></input>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-</div>
-
-<div th:replace="footer :: copy"></div>
-
+    <div th:replace="footer :: copy"></div>
 </body>
 </html>
