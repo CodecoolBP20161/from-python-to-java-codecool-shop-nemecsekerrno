@@ -4,10 +4,7 @@ import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
-import com.codecool.shop.model.LineItem;
-import com.codecool.shop.model.ProductCategory;
-import com.codecool.shop.model.ShoppingCart;
-import com.codecool.shop.model.Supplier;
+import com.codecool.shop.model.*;
 import spark.Request;
 import spark.Response;
 import spark.ModelAndView;
@@ -39,7 +36,9 @@ public class ProductController {
 
     // handler for shopping cart
     public static ModelAndView handleAddToCart(Request req, Response res) {
-        LineItem lineItem = new LineItem(ProductDaoMem.getInstance().find(Integer.parseInt(req.params(":prodID"))));
+        Product prod = ProductDaoMem.getInstance().find(Integer.parseInt(req.params(":prodID")));
+        Integer qty = Integer.parseInt(req.queryParams("prodQty"));
+        LineItem lineItem = new LineItem(prod, qty);
         if (req.session().attribute("cart") == null) {
             ShoppingCart cart = new ShoppingCart();
             cart.getSessionItems().add(lineItem);

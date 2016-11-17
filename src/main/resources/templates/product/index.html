@@ -74,7 +74,14 @@
                             <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" th:href="'/cart/add_product/' + ${prod.id}" th:prodID="${prod.id}">Add to cart</a>
+                            <form th:action="'/cart/add_product/' + ${prod.id}">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-success" th:prodID="${prod.id}">Add to cart</button>
+                                    </span>
+                                    <input class="form-control" aria-describedby="basic-addon2" type="number" min="1" max="40" step="1" name="prodQty" value="1"></input>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
