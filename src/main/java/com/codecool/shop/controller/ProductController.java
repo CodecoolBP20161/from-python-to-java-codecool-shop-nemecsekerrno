@@ -38,16 +38,11 @@ public class ProductController {
     public static ModelAndView handleAddToCart(Request req, Response res) {
         Product prod = ProductDaoMem.getInstance().find(Integer.parseInt(req.params(":prodID")));
         Integer qty = Integer.parseInt(req.queryParams("prodQty"));
-        LineItem lineItem = new LineItem(prod, qty);
-        if (req.session().attribute("cart") == null) {
-            ShoppingCart cart = new ShoppingCart();
-            cart.getSessionItems().add(lineItem);
-            req.session().attribute("cart", cart);
-        } else {
-            ShoppingCart cart = req.session().attribute("cart");
-            cart.addToCart(lineItem);
-            req.session().attribute("cart", cart);
-        }
+        ShoppingCart cart = new ShoppingCart();
+        if (req.session().attribute("cart") != null) {
+            cart = req.session().attribute("cart");}
+        cart.addToCart(prod, qty);
+        req.session().attribute("cart", cart);
         res.redirect(getLastURL(req));
         return null;
     }

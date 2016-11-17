@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by berloc on 2016.11.16..
  */
-public class ShoppingCart {
+public class ShoppingCart implements Cart{
 
     private List<LineItem> sessionItems = new ArrayList<>();
 
@@ -26,7 +26,14 @@ public class ShoppingCart {
         return quantity;
     }
 
-    public void addToCart(LineItem lineItem) {
+    @Override
+    public void addToCart(Product prod) {
+        addToCart(prod, 1);
+    }
+
+    @Override
+    public void addToCart(Product prod, Integer qty) {
+        LineItem lineItem = new LineItem(prod, qty);
         for (int i = 0; i < sessionItems.size(); i++) {
             if (sessionItems.get(i).getProduct() == lineItem.getProduct()) {
                 sessionItems.get(i).increaseQty(lineItem.getQuantity());
