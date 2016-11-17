@@ -1,5 +1,7 @@
 package com.codecool.shop.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -7,25 +9,37 @@ import java.util.Map;
  */
 public class ShoppingCart {
 
-    private Map<Integer, Integer> sessionItems;
+    private List<LineItem> sessionItems = new ArrayList<>();
+
+    public List<LineItem> getSessionItems() {
+        return sessionItems;
+    }
+
+    public void setSessionItems(List<LineItem> sessionItems) {
+        this.sessionItems = sessionItems;
+    }
 
     public Integer totalQuantity(){
-        int quantity=0;
-        for (Integer value : sessionItems.values()) {
-            quantity += value;
+        Integer quantity = 0;
+        for (int i = 0; i < sessionItems.size(); i++) {
+            quantity += sessionItems.get(i).getQty();
         }
         return quantity;
     }
 
-    public void add(Integer id, Integer quantity) {
-        if (sessionItems.containsKey(id)) {
-            sessionItems.put(id, sessionItems.get(id)+quantity);
-        } else {
-            sessionItems.put(id, quantity);
+    public void addToCart(LineItem lineItem) {
+        for (int i = 0; i < sessionItems.size(); i++) {
+            if (sessionItems.get(i).getProduct() == lineItem.getProduct()) {
+                sessionItems.get(i).increaseQty();
+                return;
+            }
         }
+        sessionItems.add(lineItem);
+        return;
     }
 
-    public Map getAll() {
-        return sessionItems;
+    public LineItem getLineItem(int i){
+        return sessionItems.get(i);
     }
+
 }
