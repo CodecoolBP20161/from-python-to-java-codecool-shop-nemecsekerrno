@@ -90,3 +90,19 @@
 {
     margin-bottom: 10px;
 }
+
+.container
+{
+    margin-top: 80px;
+}
+
+.cart
+{
+    margin-top: 7px;
+    float: right;
+}
+
+.glyphicon-piggy-bank
+{
+    font-size: 1.2em;
+}
