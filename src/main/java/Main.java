@@ -23,12 +23,14 @@ public class Main {
         get("/hello", (req, res) -> "Hello World");
 
         // Always add generic routes to the end
-        get("/", ProductController::renderProducts, new ThymeleafTemplateEngine());
+        get("/", ProductController::renderAllProducts, new ThymeleafTemplateEngine());
 
         // dynamic route for categories
         get("/category/:id", ProductController::renderProductsByCategory, new ThymeleafTemplateEngine());
 
         get("/supplier/:id", ProductController::renderProductsBySupplier, new ThymeleafTemplateEngine());
+
+        get("/cart/add_product/:prodID", ProductController::handleAddToCart, new ThymeleafTemplateEngine());
 
         // Add this line to your project to enable the debug screen
         enableDebugScreen();

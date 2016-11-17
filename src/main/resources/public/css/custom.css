@@ -69,3 +69,40 @@
 {
     margin: 0 0 11px;
 }
+
+.category-drop
+{
+    z-index: 1;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.supplier-drop
+{
+    z-index: 1;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.btn
+{
+    margin-bottom: 10px;
+}
+
+.container
+{
+    margin-top: 80px;
+}
+
+.cart
+{
+    margin-top: 7px;
+    float: right;
+}
+
+.glyphicon-piggy-bank
+{
+    font-size: 1.2em;
+}
