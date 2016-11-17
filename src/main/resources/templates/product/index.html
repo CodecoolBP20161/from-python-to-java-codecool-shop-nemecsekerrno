@@ -51,6 +51,11 @@
                 <li><a th:each="sup : ${suppliers}" th:href="'/supplier/' + ${sup.id}" th:text="${sup.name}" th:id="${sup.id}">Supplier Title</a></li>
             </ul>
         </div>
+        <div>
+            <button class="btn btn-info" type="button" href="#" th:text="*{cartItemTotal != null}? *{cartItemTotal} + ' Product(s)' : '0 Products'">
+                Cart summary
+            </button>
+        </div>
     </div>
 
 
@@ -69,7 +74,7 @@
                             <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="#">Add to cart</a>
+                            <a class="btn btn-success" th:href="'/cart/add_product/' + ${prod.id}" th:prodID="${prod.id}">Add to cart</a>
                         </div>
                     </div>
                 </div>
