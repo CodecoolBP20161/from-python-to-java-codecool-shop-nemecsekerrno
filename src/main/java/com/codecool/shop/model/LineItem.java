@@ -34,6 +34,10 @@ public class LineItem {
         return product.getDefaultPrice()* quantity;
     }
 
+    public String getTotalPriceString(){
+        return String.valueOf(getTotalPrice()) + " " + product.getDefaultCurrency().toString();
+    }
+
     public void increaseQty(Integer qty) {
         quantity += qty;
     }
