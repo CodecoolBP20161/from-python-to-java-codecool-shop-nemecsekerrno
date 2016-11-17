@@ -5,14 +5,14 @@ package com.codecool.shop.model;
  */
 public class LineItem {
     private Product product;
-    private Integer qty;
+    private Integer quantity;
 
-    public void setQty(Integer qty) {
-        this.qty = qty;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public Integer getQty() {
-        return qty;
+    public Integer getQuantity() {
+        return quantity;
     }
 
     public void setProduct(Product product) {
@@ -25,16 +25,16 @@ public class LineItem {
 
     public LineItem(){}
 
-    public LineItem(Product prod){
+    public LineItem(Product prod, Integer qty){
         product = prod;
-        qty = 1;
+        quantity = qty;
     }
 
     public float getTotalPrice(){
-        return product.getPriceFloat()*qty;
+        return product.getPriceFloat()* quantity;
     }
 
-    public void increaseQty() {
-        qty += 1;
+    public void increaseQty(Integer qty) {
+        quantity += qty;
     }
 }

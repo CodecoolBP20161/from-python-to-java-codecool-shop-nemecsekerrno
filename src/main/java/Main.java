@@ -23,7 +23,7 @@ public class Main {
         get("/hello", (req, res) -> "Hello World");
 
         // Always add generic routes to the end
-        get("/", ProductController::renderProducts, new ThymeleafTemplateEngine());
+        get("/", ProductController::renderAllProducts, new ThymeleafTemplateEngine());
 
         // dynamic route for categories
         get("/category/:id", ProductController::renderProductsByCategory, new ThymeleafTemplateEngine());

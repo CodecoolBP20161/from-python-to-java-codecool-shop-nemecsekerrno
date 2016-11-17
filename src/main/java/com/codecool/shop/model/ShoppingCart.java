@@ -2,7 +2,6 @@ package com.codecool.shop.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by berloc on 2016.11.16..
@@ -22,7 +21,7 @@ public class ShoppingCart {
     public Integer totalQuantity(){
         Integer quantity = 0;
         for (int i = 0; i < sessionItems.size(); i++) {
-            quantity += sessionItems.get(i).getQty();
+            quantity += sessionItems.get(i).getQuantity();
         }
         return quantity;
     }
@@ -30,7 +29,7 @@ public class ShoppingCart {
     public void addToCart(LineItem lineItem) {
         for (int i = 0; i < sessionItems.size(); i++) {
             if (sessionItems.get(i).getProduct() == lineItem.getProduct()) {
-                sessionItems.get(i).increaseQty();
+                sessionItems.get(i).increaseQty(lineItem.getQuantity());
                 return;
             }
         }
