@@ -5,7 +5,6 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,18 +23,18 @@ public class CartController {
             params.put("cartItemTotal", cart != null ? cart.totalQuantity() : null);
             return new ModelAndView(params, "cart/reviewcart");
         } catch (Exception e) {
-            res.redirect(getLastURL(req));
+            res.redirect(UrlController.getLastURL(req));
             return null;
         }
     }
 
-    private static String getLastURL(Request req) {
-        String redirectURL;
-        try {
-            redirectURL = req.session().attribute("lastURL");
-        } catch (NullPointerException e) {
-            redirectURL = "/";
-        }
-        return redirectURL;
-    }
+//    private static String getLastURL(Request req) {
+//        String redirectURL;
+//        try {
+//            redirectURL = req.session().attribute("lastURL");
+//        } catch (NullPointerException e) {
+//            redirectURL = "/";
+//        }
+//        return redirectURL;
+//    }
 }

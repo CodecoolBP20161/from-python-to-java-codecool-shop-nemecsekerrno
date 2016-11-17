@@ -18,19 +18,19 @@ public class ProductController {
 
     public static ModelAndView renderAllProducts(Request req, Response res) {
         generalHandler(req);
-        saveLastURL(req);
+        UrlController.saveLastURL(req);
         return new ModelAndView(params, "product/index");
     }
 
     public static ModelAndView renderProductsByCategory(Request req, Response res) {
         filterHandler(req, ProductCategoryDaoMem.getInstance().find(Integer.parseInt(req.params(":id"))));
-        saveLastURL(req);
+        UrlController.saveLastURL(req);
         return new ModelAndView(params, "product/index");
     }
     
     public static ModelAndView renderProductsBySupplier(Request req, Response res) {
         filterHandler(req, SupplierDaoMem.getInstance().find(Integer.parseInt(req.params(":id"))));
-        saveLastURL(req);
+        UrlController.saveLastURL(req);
         return new ModelAndView(params, "product/index");
     }
 
@@ -43,7 +43,7 @@ public class ProductController {
             cart = req.session().attribute("cart");}
         cart.addToCart(prod, qty);
         req.session().attribute("cart", cart);
-        res.redirect(getLastURL(req));
+        res.redirect(UrlController.getLastURL(req));
         return null;
     }
 
@@ -73,17 +73,17 @@ public class ProductController {
     }
 
     // after an item has been added to the cart, page automatically redirects to previous url
-    private static void saveLastURL(Request req) {
-        req.session().attribute("lastURL", req.pathInfo());
-    }
-
-    private static String getLastURL(Request req) {
-        String redirectURL;
-        try {
-            redirectURL = req.session().attribute("lastURL");
-        } catch (NullPointerException e) {
-            redirectURL = "/";
-        }
-        return redirectURL;
-    }
+//    private static void saveLastURL(Request req) {
+//        req.session().attribute("lastURL", req.pathInfo());
+//    }
+//
+//    private static String getLastURL(Request req) {
+//        String redirectURL;
+//        try {
+//            redirectURL = req.session().attribute("lastURL");
+//        } catch (NullPointerException e) {
+//            redirectURL = "/";
+//        }
+//        return redirectURL;
+//    }
 }
