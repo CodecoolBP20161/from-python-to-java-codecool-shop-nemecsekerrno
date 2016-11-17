@@ -26,6 +26,18 @@ public class ShoppingCart implements Cart{
         return quantity;
     }
 
+    public float totalPrice() {
+        float total = 0;
+        for (int i = 0; i < sessionItems.size(); i++) {
+            total += sessionItems.get(i).getTotalPrice();
+        }
+        return total;
+    }
+
+    public String getTotalPriceString(){
+        return String.valueOf(totalPrice()) + " " + getLineItem(1).getProduct().getDefaultCurrency().toString();
+    }
+
     @Override
     public void addToCart(Product prod) {
         addToCart(prod, 1);

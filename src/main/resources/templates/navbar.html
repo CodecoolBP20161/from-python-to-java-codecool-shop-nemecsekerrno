@@ -12,10 +12,10 @@
                     <li class="active"><a  href="/">Home</a></li>
                 </ul>
                 <div class="cart">
-                    <button class="btn btn-warning" type="button">
+                    <a href="/cart/review" class="btn btn-warning" type="button">
                         <span class="glyphicon glyphicon-piggy-bank"> </span>
                         <span th:text="*{cartItemTotal != null}? *{cartItemTotal} +'' : '0'"></span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </nav>
