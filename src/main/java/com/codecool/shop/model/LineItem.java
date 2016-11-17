@@ -31,7 +31,7 @@ public class LineItem {
     }
 
     public float getTotalPrice(){
-        return product.getPriceFloat()* quantity;
+        return product.getDefaultPrice()* quantity;
     }
 
     public void increaseQty(Integer qty) {
