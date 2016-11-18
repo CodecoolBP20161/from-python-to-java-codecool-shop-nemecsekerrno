@@ -35,7 +35,7 @@ public class ShoppingCart implements Cart{
     }
 
     public String getTotalPriceString(){
-        return String.valueOf(totalPrice()) + " " + getLineItem(1).getProduct().getDefaultCurrency().toString();
+        return String.valueOf(totalPrice()) + " " + getLineItem(0).getProduct().getDefaultCurrency().toString();
     }
 
     @Override
