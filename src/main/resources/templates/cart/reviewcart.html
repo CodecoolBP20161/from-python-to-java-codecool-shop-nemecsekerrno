@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="/css/custom.css" />
 </head>
 <body>
-    <div th:replace="navbar :: navbar"></div>
+    <div th:replace="fragments/navbar :: navbar"></div>
 
     <div class="container">
         <table class="table">
@@ -60,6 +60,6 @@
         </div>
     </div>
 
-    <div th:replace="footer :: copy"></div>
+    <div th:replace="fragments/footer :: copy"></div>
 </body>
 </html>
