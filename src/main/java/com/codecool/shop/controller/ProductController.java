@@ -19,19 +19,19 @@ public class ProductController {
     public static ModelAndView renderAllProducts(Request req, Response res) {
         generalHandler(req);
         UrlController.saveLastURL(req);
-        return new ModelAndView(params, "product/index");
+        return new ModelAndView(params, "product/viewproducts");
     }
 
     public static ModelAndView renderProductsByCategory(Request req, Response res) {
         filterHandler(req, ProductCategoryDaoMem.getInstance().find(Integer.parseInt(req.params(":id"))));
         UrlController.saveLastURL(req);
-        return new ModelAndView(params, "product/index");
+        return new ModelAndView(params, "product/viewproducts");
     }
     
     public static ModelAndView renderProductsBySupplier(Request req, Response res) {
         filterHandler(req, SupplierDaoMem.getInstance().find(Integer.parseInt(req.params(":id"))));
         UrlController.saveLastURL(req);
-        return new ModelAndView(params, "product/index");
+        return new ModelAndView(params, "product/viewproducts");
     }
 
     // handler for shopping cart
