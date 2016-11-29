@@ -4,6 +4,8 @@ import com.codecool.shop.controller.DBController;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.ProductCategory;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -28,10 +30,12 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
     }
 
     @Override
-    public ProductCategory find(int id) {
+    public ProductCategory find(int id) throws SQLException {
         String query = "SELECT * FROM productcategory WHERE id ='" + id + "';";
-        DBController.executeQuery(query);
-        return null;
+        ResultSet result = DBController.executeQuery(query);
+        ProductCategory shit = new ProductCategory(result.getString("name"), result.getString("department"),
+                result.getString("description"));
+        return shit;
     }
 
     @Override
