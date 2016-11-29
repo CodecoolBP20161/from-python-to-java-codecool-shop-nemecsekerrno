@@ -1,22 +1,24 @@
 package com.codecool.shop.controller;
 
 
-import java.sql.*;
-import java.util.Objects;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-abstract class DBController {
+public abstract class DBController {
     private static final String DATABASE = "jdbc:postgresql://localhost:5432/codecoolshop";
     private static final String DB_USER = "postgres";
     private static final String DB_PASSWORD = "postgres";
 
-    private Connection getConnection() throws SQLException {
+    private static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
                 DATABASE,
                 DB_USER,
                 DB_PASSWORD);
     }
 
-    public void executeQuery(String query) {
+    public static void executeQuery(String query) {
         try (Connection connection = getConnection(); Statement statement = connection.createStatement())
         {
             statement.execute(query);
