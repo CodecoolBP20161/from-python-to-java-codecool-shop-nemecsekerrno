@@ -6,7 +6,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -35,15 +37,19 @@ public class SupplierDaoTest {
 
 
     @Test
-    public void find() throws Exception {
+    public void TestFindValidIndex() throws Exception {
         supplierTester.add(something);
         supplierTester.add(something2);
         assertEquals("test", supplierTester.find(1).getName());
     }
 
     @Test
-    public void remove() throws Exception {
-        SupplierDao supplierTester = SupplierDaoMem.getInstance();
+    public void TestFindInvalidIndex() throws Exception {
+        assertEquals(null, supplierTester.find(1));
+    }
+
+    @Test
+    public void TestRemove() throws Exception {
         supplierTester.add(something);
         supplierTester.add(something2);
         supplierTester.remove(1);
@@ -51,10 +57,25 @@ public class SupplierDaoTest {
     }
 
     @Test
-    public void getAll() throws Exception {
-        SupplierDao supplierTester = SupplierDaoMem.getInstance();
+    public void TestRemoveInvalidIndex() throws Exception {
         supplierTester.add(something);
-        assertEquals(1, supplierTester.getAll().size());
+        supplierTester.add(something2);
+        supplierTester.remove(5);
+        assertEquals(2, supplierTester.getAll().size());
     }
 
+    @Test
+    public void TestGetAll() throws Exception {
+        List list = new ArrayList();
+        list.add(something);
+        list.add(something2);
+        supplierTester.add(something);
+        supplierTester.add(something2);
+        assertEquals(list, supplierTester.getAll());
+    }
+    @Test
+    public void TestGetAllEmpty() throws Exception {
+        List list = new ArrayList();
+        assertEquals(list, supplierTester.getAll());
+    }
 }
