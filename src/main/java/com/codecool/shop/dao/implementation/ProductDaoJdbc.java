@@ -83,4 +83,7 @@ public class ProductDaoJdbc implements ProductDao {
         ResultSet result = DBController.executeQuery(query);
         return null;
     }
+
+    @Override
+    public void clearAll() {}
 }

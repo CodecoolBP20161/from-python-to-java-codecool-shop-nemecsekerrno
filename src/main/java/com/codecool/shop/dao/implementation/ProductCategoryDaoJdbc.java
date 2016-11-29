@@ -49,4 +49,7 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
         String query = "SELECT * from productcategory";
         return null;
     }
+
+    @Override
+    public void clearAll() {}
 }

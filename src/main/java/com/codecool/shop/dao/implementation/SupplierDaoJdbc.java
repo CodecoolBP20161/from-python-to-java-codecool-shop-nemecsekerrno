@@ -56,4 +56,7 @@ public class SupplierDaoJdbc implements SupplierDao {
         }
         return suppliers;
     }
+
+    @Override
+    public void clearAll() {}
 }
