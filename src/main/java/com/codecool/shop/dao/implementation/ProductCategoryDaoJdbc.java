@@ -6,10 +6,19 @@ import com.codecool.shop.model.ProductCategory;
 
 import java.util.List;
 
-/**
- * Created by berloc on 2016.11.29..
- */
+
+
 public class ProductCategoryDaoJdbc implements ProductCategoryDao {
+
+    private static ProductCategoryDaoJdbc instance = null;
+
+
+    public static ProductCategoryDaoJdbc getInstance() {
+        if (instance == null) {
+            instance = new ProductCategoryDaoJdbc();
+        }
+        return instance;
+    }
 
     @Override
     public void add(ProductCategory category) {
@@ -34,7 +43,6 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
     @Override
     public List<ProductCategory> getAll() {
         String query = "SELECT * from productcategory";
-        DBController.executeQuery(query);
         return null;
     }
 }
