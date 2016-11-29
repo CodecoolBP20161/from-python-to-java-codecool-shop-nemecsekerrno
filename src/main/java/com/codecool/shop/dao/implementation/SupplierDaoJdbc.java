@@ -29,20 +29,20 @@ public class SupplierDaoJdbc implements SupplierDao {
 
     @Override
     public void add(Supplier category) {
-        query = "INSERT INTO suppliers VALUES (" + category.getName() + ", " + category.getDescription() + ");";
+        query = "INSERT INTO suppliers VALUES ('" + category.getName() + "', '" + category.getDescription() + "');";
         DBController.executeQuery(query);
     }
 
     @Override
     public Supplier find(int id) throws SQLException {
-        query = "SELECT * FROM suppliers WHERE id=" + id + ";";
+        query = "SELECT * FROM suppliers WHERE id='" + id + "';";
         res = DBController.executeQuery(query);
         return new Supplier(res.getString("name"), res.getString("description"));
     }
 
     @Override
     public void remove(int id) {
-        query = "DELETE FROM suppliers WHERE id=" + id + ";";
+        query = "DELETE FROM suppliers WHERE id='" + id + "';";
         DBController.executeQuery(query);
     }
 
