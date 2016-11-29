@@ -37,13 +37,14 @@ public class ProductDaoTest {
     }
 
     @Test
-    public void TestFindValidIndex() throws Exception {
+    public void TestFindValidID() throws Exception {
         products.add(one);
         assertEquals("Amazon Fire", products.find(1).getName());
     }
 
     @Test
-    public void TestFindInvalidIndex() throws Exception {
+    public void TestFindInvalidID() throws Exception {
+        products.add(one);
         products.remove(1);
         assertEquals(null, products.find(1));
     }
@@ -65,6 +66,15 @@ public class ProductDaoTest {
     }
 
     @Test
+    public void TestGetAllAfterRemoveInvalidID() throws Exception {
+        products.add(one);
+        products.remove(-1);
+        List list = new ArrayList();
+        list.add(one);
+        assertEquals(list, products.getAll());
+    }
+
+    @Test
     public void TestGetBySupplier() throws Exception {
         products.add(one);
         products.add(two);
@@ -74,7 +84,7 @@ public class ProductDaoTest {
     }
 
     @Test
-    public void TestGetByInvalidSupplier() throws Exception {
+    public void TestGetBySupplierWithNoProducts() throws Exception {
         products.add(one);
         List list = new ArrayList();
         assertEquals(list, products.getBy(lenovo));
@@ -90,7 +100,7 @@ public class ProductDaoTest {
     }
 
     @Test
-    public void TestGetByInvalidProductCategory() throws Exception {
+    public void TestGetByProductCategoryWithNoProducts() throws Exception {
         products.add(one);
         List list = new ArrayList();
         assertEquals(list, products.getBy(notebook));
