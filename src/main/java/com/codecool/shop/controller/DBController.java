@@ -16,13 +16,15 @@ public abstract class DBController {
                 DB_PASSWORD);
     }
 
-    public static void executeQuery(String query) {
+    public static ResultSet executeQuery(String query) {
+        ResultSet result = null;
         try (Connection connection = getConnection(); Statement statement = connection.createStatement())
         {
-            statement.execute(query);
+            result = statement.executeQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return result;
     }
 
     public void executeQueryWithPreparedStatement(String query, Object... args){
