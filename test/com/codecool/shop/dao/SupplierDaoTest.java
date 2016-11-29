@@ -57,6 +57,14 @@ public class SupplierDaoTest {
     }
 
     @Test
+    public void TestRemoveInvalidIndex() throws Exception {
+        supplierTester.add(something);
+        supplierTester.add(something2);
+        supplierTester.remove(5);
+        assertEquals(2, supplierTester.getAll().size());
+    }
+
+    @Test
     public void TestGetAll() throws Exception {
         supplierTester.add(something);
         assertEquals(1, supplierTester.getAll().size());
