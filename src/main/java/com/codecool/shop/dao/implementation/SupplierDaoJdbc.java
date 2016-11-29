@@ -4,6 +4,9 @@ import com.codecool.shop.controller.DBController;
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.model.Supplier;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,6 +15,7 @@ import java.util.List;
 public class SupplierDaoJdbc implements SupplierDao {
     private static SupplierDaoJdbc instance = null;
     private String query;
+    private ResultSet res;
 
     private SupplierDaoJdbc() {
     }
@@ -30,8 +34,10 @@ public class SupplierDaoJdbc implements SupplierDao {
     }
 
     @Override
-    public Supplier find(int id) {
-        return null;
+    public Supplier find(int id) throws SQLException {
+        query = "SELECT * FROM suppliers WHERE id=" + id + ";";
+        res = DBController.executeQuery(query);
+        return new Supplier(res.getString("name"), res.getString("description"));
     }
 
     @Override
@@ -41,7 +47,13 @@ public class SupplierDaoJdbc implements SupplierDao {
     }
 
     @Override
-    public List<Supplier> getAll() {
-        return null;
+    public List<Supplier> getAll() throws SQLException {
+        List<Supplier> suppliers = new ArrayList();
+        query = "SELECT * FROM suppliers;";
+        res = DBController.executeQuery(query);
+        while (res.next()) {
+            suppliers.add(new Supplier(res.getString("name"), res.getString("description")));
+        }
+        return suppliers;
     }
 }
