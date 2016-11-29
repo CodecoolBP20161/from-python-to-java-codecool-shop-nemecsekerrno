@@ -66,8 +66,12 @@ public class SupplierDaoTest {
 
     @Test
     public void TestGetAll() throws Exception {
+        List list = new ArrayList();
+        list.add(something);
+        list.add(something2);
         supplierTester.add(something);
-        assertEquals(1, supplierTester.getAll().size());
+        supplierTester.add(something2);
+        assertEquals(list, supplierTester.getAll());
     }
     @Test
     public void TestGetAllEmpty() throws Exception {
