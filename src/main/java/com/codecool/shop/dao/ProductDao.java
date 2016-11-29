@@ -12,6 +12,7 @@ public interface ProductDao {
     void add(Product product);
     Product find(int id) throws SQLException;
     void remove(int id);
+    void clearAll();
 
     List<Product> getAll();
     List<Product> getBy(Supplier supplier);

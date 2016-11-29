@@ -12,4 +12,5 @@ public interface SupplierDao {
     void remove(int id);
 
     List<Supplier> getAll() throws SQLException;
+    void clearAll();
 }
