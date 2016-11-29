@@ -27,14 +27,4 @@ public class CartController {
             return null;
         }
     }
-
-//    private static String getLastURL(Request req) {
-//        String redirectURL;
-//        try {
-//            redirectURL = req.session().attribute("lastURL");
-//        } catch (NullPointerException e) {
-//            redirectURL = "/";
-//        }
-//        return redirectURL;
-//    }
 }

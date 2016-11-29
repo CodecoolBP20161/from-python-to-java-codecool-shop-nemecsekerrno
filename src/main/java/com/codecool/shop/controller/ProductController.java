@@ -27,7 +27,7 @@ public class ProductController {
         UrlController.saveLastURL(req);
         return new ModelAndView(params, "product/viewproducts");
     }
-    
+
     public static ModelAndView renderProductsBySupplier(Request req, Response res) {
         filterHandler(req, SupplierDaoMem.getInstance().find(Integer.parseInt(req.params(":id"))));
         UrlController.saveLastURL(req);
@@ -40,7 +40,8 @@ public class ProductController {
         Integer qty = Integer.parseInt(req.queryParams("prodQty"));
         ShoppingCart cart = new ShoppingCart();
         if (req.session().attribute("cart") != null) {
-            cart = req.session().attribute("cart");}
+            cart = req.session().attribute("cart");
+        }
         cart.addToCart(prod, qty);
         req.session().attribute("cart", cart);
         res.redirect(UrlController.getLastURL(req));
@@ -71,19 +72,4 @@ public class ProductController {
         params.put("currFilter", filter);
         params.put("products", filter.getProducts());
     }
-
-    // after an item has been added to the cart, page automatically redirects to previous url
-//    private static void saveLastURL(Request req) {
-//        req.session().attribute("lastURL", req.pathInfo());
-//    }
-//
-//    private static String getLastURL(Request req) {
-//        String redirectURL;
-//        try {
-//            redirectURL = req.session().attribute("lastURL");
-//        } catch (NullPointerException e) {
-//            redirectURL = "/";
-//        }
-//        return redirectURL;
-//    }
 }
