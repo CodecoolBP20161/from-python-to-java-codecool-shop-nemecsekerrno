@@ -25,23 +25,21 @@ abstract class DBController {
         }
     }
 
-//    public void executeQuery(String query, Object... args){
-//        try (Connection connection = getConnection();
-//             PreparedStatement prStatement = connection.prepareStatement(query))
-//        {
-//            for (int i = 0; i < args.length; i++) {
-//                String objType = args[i].getClass().getName();
-//                if (Objects.equals(objType, new String(""))) {
-//
-//                }
-//
-//            }
-//            prStatement.setString(1, todo.title);
-//            prStatement.setString(2, todo.id);
-//            prStatement.setObject(3, todo.status, Types.VARCHAR);
-//            prStatement.execute();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void executeQueryWithPreparedStatement(String query, Object... args){
+        try (Connection connection = getConnection();
+             PreparedStatement prStatement = connection.prepareStatement(query))
+        {
+            for (int i = 0; i < args.length; i++) {
+                String objType = args[i].getClass().getName();
+                if (Objects.equals(objType, new String("String"))) {
+                    prStatement.setString(i++, args[i].toString());
+                } else if (Objects.equals(objType, new String("Integer"))) {
+                    prStatement.setInt(i++, (Integer) args[i]);
+                }
+            }
+            prStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
