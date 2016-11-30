@@ -36,24 +36,26 @@ public class ProductDaoJdbc implements ProductDao {
 
     @Override
     public Product find(int id) throws SQLException {
-        String query = "SELECT * FROM product LEFT JOIN category ON p_category=category.c_id LEFT JOIN supplier " +
-                "ON product.p_supplier=supplier.s_id WHERE p_id ='" + id + "';";
+        String query = "SELECT * FROM product LEFT JOIN productcategory ON p_productcategory=c_id LEFT JOIN supplier ON p_supplier=s_id WHERE p_id ='" + id + "';";
+        Product product = null;
         try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()){
             ResultSet result = statement.executeQuery(query);
-            ProductCategory category = new ProductCategory(result.getString("c_name"), result.getString("c_department"),
-                    result.getString("c_description"));
-            category.setId(result.getInt("p_productcategory"));
-            Supplier supplier = new Supplier(result.getString("s_name"), result.getString("s_description"));
-            supplier.setId(result.getInt("p_supplier"));
-            Product product = new Product(result.getString("p_name"), result.getFloat("p_defaultprice"),
-                    result.getString("p_defaultcurrency"), result.getString("p_description"),
-                    category, supplier);
-            product.setId(id);
-            return product;
+            if (result.next()) {
+                ProductCategory category = new ProductCategory(result.getString("c_name"), result.getString("c_department"),
+                        result.getString("c_description"));
+                category.setId(result.getInt("p_productcategory"));
+                Supplier supplier = new Supplier(result.getString("s_name"), result.getString("s_description"));
+                supplier.setId(result.getInt("p_supplier"));
+                product = new Product(result.getString("p_name"), result.getFloat("p_defaultprice"),
+                        result.getString("p_defaultcurrency"), result.getString("p_description"),
+                        category, supplier);
+                product.setId(id);
+
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return product;
     }
 
     @Override
@@ -75,6 +77,7 @@ public class ProductDaoJdbc implements ProductDao {
             ResultSet result = statement.executeQuery(query);
             while (result.next()) {
                 Product product = find(result.getInt("p_id"));
+                product.setId(result.getInt("p_id"));
                 allProducts.add(product);
             }
             return allProducts;
@@ -93,6 +96,7 @@ public class ProductDaoJdbc implements ProductDao {
             ResultSet result = statement.executeQuery(query);
             while (result.next()) {
                 Product product = find(result.getInt("p_id"));
+                product.setId(result.getInt("p_id"));
                 allProducts.add(product);
             }
                 return allProducts;
@@ -111,6 +115,7 @@ public class ProductDaoJdbc implements ProductDao {
             ResultSet result = statement.executeQuery(query);
             while (result.next()) {
                 Product product = find(result.getInt("p_id"));
+                product.setId(result.getInt("p_id"));
                 allProducts.add(product);
             }
             return allProducts;

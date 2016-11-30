@@ -40,9 +40,9 @@ public class SupplierDaoJdbc implements SupplierDao {
         try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
             res = statement.executeQuery(query);
             if (res.next()) {
-
                 supplier = new Supplier(res.getString("s_name"), res.getString("s_description"));
                 supplier.setId(id);
+                supplier.setProducts(new ProductDaoJdbc().getBy(supplier));
             }
         } catch (SQLException e) {
             e.printStackTrace();

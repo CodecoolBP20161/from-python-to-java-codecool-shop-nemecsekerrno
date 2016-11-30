@@ -38,6 +38,8 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
                 category = new ProductCategory(result.getString("c_name"), result.getString("c_department"),
                         result.getString("c_description"));
                 category.setId(id);
+                category.setProducts(new ProductDaoJdbc().getBy(category));
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,6 +67,8 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
             while (result.next()) {
                 ProductCategory current = new ProductCategory(result.getString("c_name"),
                         result.getString("c_department"), result.getString("c_description"));
+                current.setId(result.getInt("c_id"));
+                current.setProducts(new ProductDaoJdbc().getBy(current));
                 allCategories.add(current);
             }
             return allCategories;
