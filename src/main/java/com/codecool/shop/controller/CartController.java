@@ -8,9 +8,6 @@ import spark.Response;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by reka on 2016.11.17..
- */
 public class CartController {
 
     private static Map params = new HashMap<>();
