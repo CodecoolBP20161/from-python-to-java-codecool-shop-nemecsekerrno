@@ -35,7 +35,8 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
             ResultSet result = statement.executeQuery(query);
             if (result.next()) {
 
-                category = new ProductCategory(result.getString("c_name"), result.getString("c_department"), result.getString("c_description"));
+                category = new ProductCategory(result.getString("c_name"), result.getString("c_department"),
+                        result.getString("c_description"));
                 category.setId(id);
             }
         } catch (SQLException e) {
@@ -62,7 +63,8 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
         try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
             ResultSet result = statement.executeQuery(query);
             while (result.next()) {
-                ProductCategory current = new ProductCategory(result.getString("c_name"), result.getString("c_department"), result.getString("c_description"));
+                ProductCategory current = new ProductCategory(result.getString("c_name"),
+                        result.getString("c_department"), result.getString("c_description"));
                 allCategories.add(current);
             }
             return allCategories;
@@ -73,5 +75,10 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
     }
 
     @Override
-    public void clearAll() {}
+    public void clearAll() {
+        System.out.println("We needed this function here, as the same was needed " +
+                "with the other implementation.\n" +
+                "It has, however, no functional purpose other than having its name. " +
+                "Like a modern European royalty.");
+    }
 }

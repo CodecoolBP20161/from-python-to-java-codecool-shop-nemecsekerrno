@@ -69,7 +69,7 @@ public class SupplierDaoJdbc implements SupplierDao {
             while (res.next()) {
                 supplier = new Supplier(res.getString("s_name"), res.getString("s_description"));
                 supplier.setId(res.getInt("s_id"));
-                supplier.setProducts(ProductDaoJdbc.getInstance().getBy(supplier));
+                supplier.setProducts(new ProductDaoJdbc().getBy(supplier));
                 suppliers.add(supplier);
             }
         } catch (SQLException e) {
