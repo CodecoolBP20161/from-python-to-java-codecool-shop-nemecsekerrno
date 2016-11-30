@@ -17,8 +17,8 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 
     @Override
     public void add(ProductCategory category) {
-        String query = " INSERT INTO productcategory (c_name, c_department) " +
-                "VALUES ('" + category.getName() + "', '" + category.getDepartment() + "');";
+        String query = " INSERT INTO productcategory (c_name, c_department, c_description) " +
+                "VALUES ('" + category.getName() + "', '" + category.getDepartment() + "', '" + category.getDescription() + "');";
         try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
             statement.executeUpdate(query);
         } catch (SQLException e) {
@@ -28,17 +28,20 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 
     @Override
     public ProductCategory find(int id) throws SQLException {
-        String query = "SELECT * FROM product LEFT JOIN category ON p_category=category.c_id LEFT JOIN supplier ON product.p_supplier=supplier.s_id WHERE p_id ='" + id + "';";
+        ProductCategory category = null;
+        String query = "SELECT * FROM productcategory WHERE c_id ='" + id + "';";
         try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement())
         {
             ResultSet result = statement.executeQuery(query);
-            ProductCategory category = new ProductCategory(result.getString("c_name"), result.getString("c_department"), result.getString("c_desciption"));
-            category.setId(result.getInt("c_id"));
-            return category;
+            if (result.next()) {
+
+                category = new ProductCategory(result.getString("c_name"), result.getString("c_department"), result.getString("c_description"));
+                category.setId(id);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return category;
     }
 
     @Override

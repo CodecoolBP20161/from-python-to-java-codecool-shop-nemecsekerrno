@@ -36,13 +36,17 @@ public class SupplierDaoJdbc implements SupplierDao {
     @Override
     public Supplier find(int id) throws SQLException {
         query = "SELECT * FROM supplier WHERE s_id='" + id + "';";
+        Supplier supplier = null;
         try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
             res = statement.executeQuery(query);
-            supplier = new Supplier(res.getString("s_name"), res.getString("s_description"));
+            if (res.next()) {
+
+                supplier = new Supplier(res.getString("s_name"), res.getString("s_description"));
+                supplier.setId(id);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        supplier.setId(id);
         return supplier;
     }
 

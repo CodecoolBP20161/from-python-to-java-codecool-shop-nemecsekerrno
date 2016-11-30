@@ -44,10 +44,9 @@ public class PopulateData {
         phone = productCategoryDataStore.find(3);
 
         //setting up products and printing it
-        System.out.println(samsung.getId());
         productDataStore.add(new Product("Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
         productDataStore.add(new Product("Lenovo IdeaPad Miix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
-        productDataStore.add(new Product("Amazon Fire HD 8", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
+        productDataStore.add(new Product("Amazon Fire HD 8", 895, "USD", "Amazons latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
         productDataStore.add(new Product("Lenovo 310-15IKB 15.6 Laptop", 390, "USD", "Intel Core i5 - 8GB Memory - 1TB Hard Drive", notebook, lenovo));
         productDataStore.add(new Product("Apple MacBook Air® 13.3", 950, "USD", "Intel Core i5 - 8GB Memory - 128GB Flash Storage - Silver", notebook, apple));
         productDataStore.add(new Product("Lenovo Ideapad 110s 11.6", 220, "USD", "Intel Celeron - 2GB Memory - 32GB eMMC Flash Memory", notebook, lenovo));

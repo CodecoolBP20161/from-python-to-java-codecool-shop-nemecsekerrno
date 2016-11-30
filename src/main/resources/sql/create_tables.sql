@@ -22,7 +22,7 @@ CREATE TABLE product
   p_defaultprice DECIMAL(19,4),
   p_defaultcurrency varchar(10),
   p_description varchar(250),
-  p_productcategory INTEGER REFERENCES productcategory,
-  p_supplier INTEGER REFERENCES supplier
+  p_productcategory INTEGER,
+  p_supplier INTEGER
 );
 
