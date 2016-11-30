@@ -71,46 +71,26 @@ public class ProductDaoJdbc implements ProductDao {
 
     @Override
     public List<Product> getAll () throws SQLException {
-        List<Product> allProducts = new ArrayList<>();
         String query = "SELECT p_id FROM product;";
-        try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
-            ResultSet result = statement.executeQuery(query);
-            while (result.next()) {
-                Product product = find(result.getInt("p_id"));
-                product.setId(result.getInt("p_id"));
-                allProducts.add(product);
-            }
-            return allProducts;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return queryExecuteHandler(query);
     }
 
 
     @Override
     public ArrayList<Product> getBy(Supplier supplier) throws SQLException {
-        ArrayList<Product> allProducts = new ArrayList<>();
         String query = "SELECT p_id FROM product WHERE p_supplier=" + supplier.getId() + ";";
-        try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
-            ResultSet result = statement.executeQuery(query);
-            while (result.next()) {
-                Product product = find(result.getInt("p_id"));
-                product.setId(result.getInt("p_id"));
-                allProducts.add(product);
-            }
-                return allProducts;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return queryExecuteHandler(query);
     }
 
 
     @Override
     public ArrayList<Product> getBy(ProductCategory productCategory) throws SQLException {
-        ArrayList<Product> allProducts = new ArrayList<>();
         String query = "SELECT p_id FROM product WHERE p_productcategory=" + productCategory.getId() + ";";
+        return queryExecuteHandler(query);
+    }
+
+    private ArrayList<Product> queryExecuteHandler(String query) {
+        ArrayList<Product> allProducts = new ArrayList<>();
         try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
             ResultSet result = statement.executeQuery(query);
             while (result.next()) {
@@ -124,21 +104,6 @@ public class ProductDaoJdbc implements ProductDao {
         }
         return null;
     }
-
-//    private ArrayList<Product> queryExecuteHandler(String query) {
-//        ArrayList<Product> allProducts = new ArrayList<>();
-//        try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
-//            ResultSet result = statement.executeQuery(query);
-//            while (result.next()) {
-//                Product product = find(result.getInt("p_id"));
-//                allProducts.add(product);
-//            }
-//            return allProducts;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 
     @Override
     public void clearAll() {
