@@ -9,7 +9,7 @@ public abstract class DBController {
     private static final String DB_USER = "postgres";
     private static final String DB_PASSWORD = "postgres";
 
-    private static Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
                 DATABASE,
                 DB_USER,
@@ -34,23 +34,5 @@ public abstract class DBController {
             e.printStackTrace();
         }
         return result;
-    }
-
-    public void executeQueryWithPreparedStatement(String query, Object... args){
-        try (Connection connection = getConnection();
-             PreparedStatement prStatement = connection.prepareStatement(query))
-        {
-            for (int i = 0; i < args.length; i++) {
-                String objType = args[i].getClass().getName();
-                if (Objects.equals(objType, new String("String"))) {
-                    prStatement.setString(i++, args[i].toString());
-                } else if (Objects.equals(objType, new String("Integer"))) {
-                    prStatement.setInt(i++, (Integer) args[i]);
-                }
-            }
-            prStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }
