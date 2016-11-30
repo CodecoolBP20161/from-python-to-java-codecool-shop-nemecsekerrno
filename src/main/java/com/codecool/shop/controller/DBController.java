@@ -16,7 +16,16 @@ public abstract class DBController {
                 DB_PASSWORD);
     }
 
-    public static ResultSet executeQuery(String query) {
+    public static void execUpdate(String query) {
+        try (Connection connection = getConnection(); Statement statement = connection.createStatement())
+        {
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ResultSet execQuery(String query) {
         ResultSet result = null;
         try (Connection connection = getConnection(); Statement statement = connection.createStatement())
         {

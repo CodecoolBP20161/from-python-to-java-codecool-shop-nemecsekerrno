@@ -1,27 +1,28 @@
 DROP TABLE IF EXISTS Supplier, Product, ProductCategory;
 
-CREATE TABLE Supplier
+CREATE TABLE supplier
 (
-id integer PRIMARY KEY,
-name varchar(40),
-description varchar(100)
+  s_id serial PRIMARY KEY,
+  s_name varchar(40),
+  s_description varchar(100)
 );
 
-CREATE TABLE ProductCategory
+CREATE TABLE productcategory
 (
-  id integer PRIMARY KEY,
-  name VARCHAR(30),
-  department varchar(250)
+  c_id serial PRIMARY KEY,
+  c_name VARCHAR(30),
+  c_department varchar(250),
+  c_description varchar(250)
 );
 
-CREATE TABLE Product
+CREATE TABLE product
 (
-id integer PRIMARY KEY,
-name varchar(40),
-defaultPrice DECIMAL(19,4),
-defaultCurrency varchar(10),
-description varchar(250),
-Supplier INTEGER REFERENCES Supplier,
-ProductCategory INTEGER REFERENCES ProductCategory
+  p_id serial PRIMARY KEY,
+  p_name varchar(40),
+  p_defaultprice DECIMAL(19,4),
+  p_defaultcurrency varchar(10),
+  p_description varchar(250),
+  p_productcategory INTEGER REFERENCES productcategory,
+  p_supplier INTEGER REFERENCES supplier
 );
 

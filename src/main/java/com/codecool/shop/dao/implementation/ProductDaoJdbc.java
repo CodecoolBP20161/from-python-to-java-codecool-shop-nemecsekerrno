@@ -10,6 +10,7 @@ import com.codecool.shop.model.Supplier;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class ProductDaoJdbc implements ProductDao {
 
     /* A private Constructor prevents any other class from instantiating.
      */
-    private ProductDaoJdbc() {
+    public ProductDaoJdbc() {
     }
 
     public static ProductDaoJdbc getInstance() {
@@ -33,55 +34,68 @@ public class ProductDaoJdbc implements ProductDao {
 
     @Override
     public void add(Product product) {
-    String query = "INSERT INTO product (name, defaultprice, defaultcurrency, description," +
-            " supplier, productcategory) VALUES ('"+ product.getName() + "', '" + product.getDefaultPrice() + "', '" +
+    String query = "INSERT INTO product (p_name, p_defaultprice, p_defaultcurrency, p_description," +
+            " p_supplier, p_productcategory) VALUES ('"+ product.getName() + "', '" + product.getDefaultPrice() + "', '" +
             product.getDefaultCurrency() + "', '" + product.getDescription() + "', '" + product.getSupplier().getId() +
             "', '" + product.getProductCategory().getId() + "');";
-        DBController.executeQuery(query);
+        DBController.execUpdate(query);
     }
 
     @Override
     public Product find(int id) throws SQLException {
-        ProductCategoryDao category = ProductCategoryDaoJdbc.getInstance();
-        String query = "SELECT * FROM product WHERE id ='" + id + "';";
-        ResultSet result = DBController.executeQuery(query);
-        ProductCategory category1 = category.find(Integer.parseInt(result.getString("categoryId")));
-        SupplierDao supplier = SupplierDaoJdbc.getInstance();
-        Supplier supplier1 = supplier.find(Integer.parseInt(result.getString("supplierId")));
-        Product resultProduct = new Product(result.getString("name"), result.getFloat("defaultprice"),
-                result.getString("defaultcurrency"), result.getString("description"),
-                category1, supplier1);
-        return null;
+        String query = "SELECT * FROM product LEFT JOIN category ON p_category=category.c_id LEFT JOIN supplier ON product.p_supplier=supplier.s_id WHERE p_id ='" + id + "';";
+        ResultSet result = DBController.execQuery(query);
+        ProductCategory category = new ProductCategory(result.getString("c_name"), result.getString("c_department"), result.getString("c_description"));
+        category.setId(result.getInt("p_productcategory"));
+        Supplier supplier = new Supplier(result.getString("s_name"), result.getString("s_description"));
+        supplier.setId(result.getInt("p_supplier"));
+        Product product = new Product(result.getString("p_name"), result.getFloat("p_defaultprice"),
+                result.getString("p_defaultcurrency"), result.getString("p_description"),
+                category, supplier);
+        product.setId(id);
+        return product;
     }
 
     @Override
     public void remove(int id) {
-        String query = "DELETE FROM product WHERE id = '" + id +"';";
-        DBController.executeQuery(query);
+        String query = "DELETE FROM product WHERE p_id = '" + id +"';";
+        DBController.execUpdate(query);
     }
 
     @Override
-    public List<Product> getAll() {
-        String query = "SELECT * FROM product;";
-        // something else comes here so we can return the Products
-        ResultSet result = DBController.executeQuery(query);
-        return null;
+    public List<Product> getAll() throws SQLException {
+        List<Product> allProducts = new ArrayList<>();
+        String query = "SELECT p_id FROM product;";
+        ResultSet result = DBController.execQuery(query);
+        while (result.next()) {
+            Product product = find(result.getInt("p_id"));
+            allProducts.add(product);
+        }
+        return allProducts;
     }
 
     @Override
-    public List<Product> getBy(Supplier supplier) {
-        String query = "DELETE FROM product WHERE supplier = '" + supplier.getId() +"';";
-        // something else comes here so we can return the Products
-        ResultSet result = DBController.executeQuery(query);
-        return null;
+    public ArrayList<Product> getBy(Supplier supplier) throws SQLException {
+        ArrayList<Product> allProducts = new ArrayList<>();
+        String query = "SELECT p_id FROM product WHERE p_supplier=" + supplier.getId() + ";";
+        ResultSet result = DBController.execQuery(query);
+        while (result.next()) {
+            Product product = find(result.getInt("p_id"));
+            allProducts.add(product);
+        }
+        return allProducts;
     }
 
     @Override
-    public List<Product> getBy(ProductCategory productCategory) {
-        String query = "DELETE FROM product WHERE productcategory = '" + productCategory.getId() +"';";
-        // something else comes here so we can return the Products
-        ResultSet result = DBController.executeQuery(query);
-        return null;
+    public ArrayList<Product> getBy(ProductCategory productCategory) throws SQLException {
+        ArrayList allProducts = new ArrayList<>();
+        String query = "SELECT p_id FROM product WHERE p_productcategory=" + productCategory.getId() + ";";
+        ResultSet result = DBController.execQuery(query);
+        while (result.next()) {
+            Product product = find(result.getInt("p_id"));
+            allProducts.add(product);
+        }
+        return allProducts;
     }
 
     @Override

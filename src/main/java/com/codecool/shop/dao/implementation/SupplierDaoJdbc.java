@@ -17,7 +17,7 @@ public class SupplierDaoJdbc implements SupplierDao {
     private String query;
     private ResultSet res;
 
-    private SupplierDaoJdbc() {
+    public SupplierDaoJdbc() {
     }
 
     public static SupplierDaoJdbc getInstance() {
@@ -28,31 +28,37 @@ public class SupplierDaoJdbc implements SupplierDao {
     }
 
     @Override
-    public void add(Supplier category) {
-        query = "INSERT INTO suppliers VALUES ('" + category.getName() + "', '" + category.getDescription() + "');";
-        DBController.executeQuery(query);
+    public void add(Supplier supplier) {
+        query = "INSERT INTO supplier (s_name, s_description) VALUES ('" + supplier.getName() + "', '" + supplier.getDescription() + "');";
+        DBController.execUpdate(query);
     }
 
     @Override
     public Supplier find(int id) throws SQLException {
-        query = "SELECT * FROM suppliers WHERE id='" + id + "';";
-        res = DBController.executeQuery(query);
-        return new Supplier(res.getString("name"), res.getString("description"));
+        query = "SELECT * FROM supplier WHERE s_id='" + id + "';";
+        res = DBController.execQuery(query);
+        res.first();
+        Supplier supp = new Supplier(res.getString("s_name"), res.getString("s_description"));
+        supp.setId(id);
+        return supp;
     }
 
     @Override
     public void remove(int id) {
-        query = "DELETE FROM suppliers WHERE id='" + id + "';";
-        DBController.executeQuery(query);
+        query = "DELETE FROM supplier WHERE s_id='" + id + "';";
+        DBController.execUpdate(query);
     }
 
     @Override
     public List<Supplier> getAll() throws SQLException {
         List<Supplier> suppliers = new ArrayList();
-        query = "SELECT * FROM suppliers;";
-        res = DBController.executeQuery(query);
+        query = "SELECT * FROM supplier;";
+        res = DBController.execQuery(query);
         while (res.next()) {
-            suppliers.add(new Supplier(res.getString("name"), res.getString("description")));
+            Supplier supp = new Supplier(res.getString("s_name"), res.getString("s_description"));
+            supp.setId(res.getInt("s_id"));
+            supp.setProducts(ProductDaoJdbc.getInstance().getBy(supp));
+            suppliers.add(supp);
         }
         return suppliers;
     }
