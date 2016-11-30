@@ -1,9 +1,7 @@
 package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.controller.DBController;
-import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
-import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
@@ -20,26 +18,15 @@ import java.util.List;
  */
 public class ProductDaoJdbc implements ProductDao {
 
-    private static ProductDaoJdbc instance = null;
-
-    /* A private Constructor prevents any other class from instantiating.
-     */
     public ProductDaoJdbc() {
-    }
-
-    public static ProductDaoJdbc getInstance() {
-        if (instance == null) {
-            instance = new ProductDaoJdbc();
-        }
-        return instance;
     }
 
     @Override
     public void add(Product product) {
         String query = "INSERT INTO product (p_name, p_defaultprice, p_defaultcurrency, p_description," +
-            " p_supplier, p_productcategory) VALUES ('"+ product.getName() + "', '" + product.getDefaultPrice() + "', '" +
-            product.getDefaultCurrency() + "', '" + product.getDescription() + "', '" + product.getSupplier().getId() +
-            "', '" + product.getProductCategory().getId() + "');";
+            " p_supplier, p_productcategory) VALUES ('"+ product.getName() + "', '" + product.getDefaultPrice()
+                + "', '" + product.getDefaultCurrency() + "', '" + product.getDescription() + "', '"
+                + product.getSupplier().getId() + "', '" + product.getProductCategory().getId() + "');";
         try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()){
             statement.executeUpdate(query);
         } catch (SQLException e) {
@@ -49,10 +36,12 @@ public class ProductDaoJdbc implements ProductDao {
 
     @Override
     public Product find(int id) throws SQLException {
-        String query = "SELECT * FROM product LEFT JOIN category ON p_category=category.c_id LEFT JOIN supplier ON product.p_supplier=supplier.s_id WHERE p_id ='" + id + "';";
+        String query = "SELECT * FROM product LEFT JOIN category ON p_category=category.c_id LEFT JOIN supplier " +
+                "ON product.p_supplier=supplier.s_id WHERE p_id ='" + id + "';";
         try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()){
             ResultSet result = statement.executeQuery(query);
-            ProductCategory category = new ProductCategory(result.getString("c_name"), result.getString("c_department"), result.getString("c_description"));
+            ProductCategory category = new ProductCategory(result.getString("c_name"), result.getString("c_department"),
+                    result.getString("c_description"));
             category.setId(result.getInt("p_productcategory"));
             Supplier supplier = new Supplier(result.getString("s_name"), result.getString("s_description"));
             supplier.setId(result.getInt("p_supplier"));
@@ -80,45 +69,26 @@ public class ProductDaoJdbc implements ProductDao {
 
     @Override
     public List<Product> getAll() throws SQLException {
-        List<Product> allProducts = new ArrayList<>();
         String query = "SELECT p_id FROM product;";
-        try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
-            ResultSet result = statement.executeQuery(query);
-            while (result.next()) {
-                Product product = find(result.getInt("p_id"));
-                allProducts.add(product);
-            }
-            return allProducts;
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return queryExecuteHandler(query);
     }
 
 
 
     @Override
     public ArrayList<Product> getBy(Supplier supplier) throws SQLException {
-        ArrayList<Product> allProducts = new ArrayList<>();
         String query = "SELECT p_id FROM product WHERE p_supplier=" + supplier.getId() + ";";
-        try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
-            ResultSet result = statement.executeQuery(query);
-            while (result.next()) {
-                Product product = find(result.getInt("p_id"));
-                allProducts.add(product);
-            }
-            return allProducts;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return queryExecuteHandler(query);
     }
 
     @Override
     public ArrayList<Product> getBy(ProductCategory productCategory) throws SQLException {
-        ArrayList allProducts = new ArrayList<>();
         String query = "SELECT p_id FROM product WHERE p_productcategory=" + productCategory.getId() + ";";
+        return queryExecuteHandler(query);
+    }
+
+    private ArrayList<Product> queryExecuteHandler(String query) {
+        ArrayList<Product> allProducts = new ArrayList<>();
         try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
             ResultSet result = statement.executeQuery(query);
             while (result.next()) {
@@ -133,5 +103,10 @@ public class ProductDaoJdbc implements ProductDao {
     }
 
     @Override
-    public void clearAll() {}
+    public void clearAll() {
+        System.out.println("We needed this function here, as the same was needed " +
+                "with the other implementation.\n" +
+                "It has, however, no functional purpose other than having its name. " +
+                "Like a modern European royalty.");
+    }
 }
