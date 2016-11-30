@@ -74,9 +74,11 @@ public class SupplierDaoJdbc implements SupplierDao {
         return suppliers;
     }
 
-    /* We need this function here below, because the same method was needed with the other implementation.
-    It has, however, no functional purpose other than having its name. Like a modern European royalty.
-     */
     @Override
-    public void clearAll() {}
+    public void clearAll() {
+        System.out.println("We needed this function here, as the same was needed " +
+                "with the other implementation.\n" +
+                "It has, however, no functional purpose other than having its name. " +
+                "Like a modern European royalty.");
+    }
 }
