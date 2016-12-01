@@ -107,9 +107,17 @@ public class ProductDaoJdbc implements ProductDao {
 
     @Override
     public void clearAll() {
-        System.out.println("We needed this function here, as the same was needed " +
-                "with the other implementation.\n" +
-                "It has, however, no functional purpose other than having its name. " +
-                "Like a modern European royalty.");
+//        String truncate ="TRUNCATE TABLE product";
+        String drop = "DROP TABLE product;";
+        String create = "CREATE TABLE product (p_id serial PRIMARY KEY, p_name varchar(40), " +
+                "p_defaultprice DECIMAL (19,4), p_defaultcurrency VARCHAR(10), p_description VARCHAR(250), " +
+                "p_productcategory INTEGER, p_supplier INTEGER)";
+        try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
+            statement.executeUpdate(drop);
+            statement.executeUpdate(create);
+//            statement.executeUpdate(truncate);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

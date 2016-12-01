@@ -18,7 +18,8 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
     @Override
     public void add(ProductCategory category) {
         String query = " INSERT INTO productcategory (c_name, c_department, c_description) " +
-                "VALUES ('" + category.getName() + "', '" + category.getDepartment() + "', '" + category.getDescription() + "');";
+                "VALUES ('" + category.getName() + "', '" + category.getDepartment() + "', '"
+                + category.getDescription() + "');";
         try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
             statement.executeUpdate(query);
         } catch (SQLException e) {
@@ -80,9 +81,15 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 
     @Override
     public void clearAll() {
-        System.out.println("We needed this function here, as the same was needed " +
-                "with the other implementation.\n" +
-                "It has, however, no functional purpose other than having its name. " +
-                "Like a modern European royalty.");
+        String drop = "DROP TABLE productcategory;";
+        String create = "CREATE TABLE productcategory(c_id serial PRIMARY KEY, c_name VARCHAR(30)," +
+                "c_department varchar(250), c_description varchar(250));";
+        try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement())
+        {
+            statement.executeUpdate(drop);
+            statement.executeUpdate(create);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

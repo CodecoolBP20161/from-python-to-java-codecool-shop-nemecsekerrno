@@ -80,9 +80,14 @@ public class SupplierDaoJdbc implements SupplierDao {
 
     @Override
     public void clearAll() {
-        System.out.println("We needed this function here, as the same was needed " +
-                "with the other implementation.\n" +
-                "It has, however, no functional purpose other than having its name. " +
-                "Like a modern European royalty.");
+        String drop = "DROP TABLE supplier;";
+        String create = "CREATE TABLE supplier (s_id serial PRIMARY KEY, s_name varchar(40), " +
+                "s_description varchar(100));";
+        try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
+            statement.executeUpdate(drop);
+            statement.executeUpdate(create);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
