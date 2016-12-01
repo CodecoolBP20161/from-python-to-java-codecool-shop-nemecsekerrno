@@ -107,9 +107,7 @@ public class ProductDaoJdbc implements ProductDao {
 
     @Override
     public void clearAll() {
-        System.out.println("We needed this function here, as the same was needed " +
-                "with the other implementation.\n" +
-                "It has, however, no functional purpose other than having its name. " +
-                "Like a modern European royalty.");
+        String query = "TRUNCATE TABLE product, supplier, productcategory";
+        queryExecuteHandler(query);
     }
 }

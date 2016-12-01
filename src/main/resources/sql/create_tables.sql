@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS supplier, product, productCategory;
+DROP TABLE IF EXISTS supplier, product, productcategory;
 
 CREATE TABLE supplier
 (
