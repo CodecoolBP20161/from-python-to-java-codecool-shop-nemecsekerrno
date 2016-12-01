@@ -68,12 +68,9 @@ public class BaseModel {
 
         BaseModel baseModel = (BaseModel) o;
 
-        return id == baseModel.id;
+        if (id != baseModel.id) return false;
+        if (!name.equals(baseModel.name)) return false;
+        return description.equals(baseModel.description);
 
-    }
-
-    @Override
-    public int hashCode() {
-        return id;
     }
 }
