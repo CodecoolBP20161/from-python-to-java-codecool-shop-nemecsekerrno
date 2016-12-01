@@ -73,4 +73,12 @@ public class BaseModel {
         return description.equals(baseModel.description);
 
     }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + description.hashCode();
+        return result;
+    }
 }
