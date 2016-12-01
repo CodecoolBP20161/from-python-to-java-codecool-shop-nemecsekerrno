@@ -38,7 +38,7 @@ public class ProductCategoryDaoTest {
 
     @After
     public void tearDown() throws Exception {
-        productCategoryDao.clear();
+        productCategoryDao.clearAll();
     }
 
     @Test

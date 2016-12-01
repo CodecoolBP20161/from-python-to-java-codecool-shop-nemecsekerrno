@@ -8,9 +8,6 @@ import spark.Response;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by reka on 2016.11.17..
- */
 public class CartController {
 
     private static Map params = new HashMap<>();
@@ -27,14 +24,4 @@ public class CartController {
             return null;
         }
     }
-
-//    private static String getLastURL(Request req) {
-//        String redirectURL;
-//        try {
-//            redirectURL = req.session().attribute("lastURL");
-//        } catch (NullPointerException e) {
-//            redirectURL = "/";
-//        }
-//        return redirectURL;
-//    }
 }
