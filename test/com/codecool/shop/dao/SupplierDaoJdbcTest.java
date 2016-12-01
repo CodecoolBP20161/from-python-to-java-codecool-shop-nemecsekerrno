@@ -17,18 +17,18 @@ import static org.junit.Assert.*;
  */
 public class SupplierDaoJdbcTest {
 
-    Supplier something;
-    Supplier something2;
-    SupplierDao supplierTester;
+    private Supplier something;
+    private Supplier something2;
+    private SupplierDao supplierTester;
 
     @Before
     public void setUp() throws Exception {
 
-        something = new Supplier("test", "test");
-        something.setId(1);
-        something2 = new Supplier("test2", "test2");
-        something2.setId(2);
         supplierTester = new SupplierDaoJdbc();
+        something = new Supplier("test", "test");
+        something2 = new Supplier("test2", "test2");
+        supplierTester.add(something);
+        supplierTester.add(something2);
     }
     @After
     public void tearDown() {
@@ -37,28 +37,22 @@ public class SupplierDaoJdbcTest {
 
     @Test
     public void TestFindValidIndex() throws Exception {
-        supplierTester.add(something);
-        supplierTester.add(something2);
         assertEquals("test2", supplierTester.find(2).getName());
     }
 
     @Test
     public void TestFindInvalidIndex() throws Exception {
-        assertEquals(null, supplierTester.find(1));
+        assertEquals(null, supplierTester.find(-2));
     }
 
     @Test
     public void TestRemove() throws Exception {
-        supplierTester.add(something);
-        supplierTester.add(something2);
         supplierTester.remove(1);
         assertEquals(1, supplierTester.getAll().size());
     }
 
     @Test
     public void TestRemoveInvalidIndex() throws Exception {
-        supplierTester.add(something);
-        supplierTester.add(something2);
         supplierTester.remove(5);
         assertEquals(2, supplierTester.getAll().size());
     }
@@ -66,14 +60,16 @@ public class SupplierDaoJdbcTest {
     @Test
     public void TestGetAll() throws Exception {
         List<Supplier> list = new ArrayList();
+        something.setId(1);
+        something2.setId(2);
         list.add(something);
         list.add(something2);
-        supplierTester.add(something);
-        supplierTester.add(something2);
-        assertEquals(list.get(1), supplierTester.getAll().get(1));
+        assertEquals(list, supplierTester.getAll());
     }
     @Test
     public void TestGetAllEmpty() throws Exception {
+        supplierTester.remove(1);
+        supplierTester.remove(2);
         List list = new ArrayList();
         assertEquals(list, supplierTester.getAll());
     }
