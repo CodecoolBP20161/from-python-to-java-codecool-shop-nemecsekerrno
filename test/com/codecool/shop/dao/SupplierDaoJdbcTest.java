@@ -1,6 +1,7 @@
-package com.codecool.shop.dao.implementation;
+package com.codecool.shop.dao;
 
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.implementation.SupplierDaoJdbc;
 import com.codecool.shop.model.Supplier;
 import org.junit.After;
 import org.junit.Before;
