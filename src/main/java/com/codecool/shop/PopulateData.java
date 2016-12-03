@@ -1,72 +1,52 @@
-import static spark.Spark.*;
-import static spark.debug.DebugScreen.enableDebugScreen;
+package com.codecool.shop;
 
-import com.codecool.shop.controller.CartController;
-import com.codecool.shop.controller.ProductController;
-import com.codecool.shop.dao.*;
+import com.codecool.shop.dao.ProductCategoryDao;
+import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.*;
-import com.codecool.shop.model.*;
-import spark.template.thymeleaf.ThymeleafTemplateEngine;
+import com.codecool.shop.model.Product;
+import com.codecool.shop.model.ProductCategory;
+import com.codecool.shop.model.Supplier;
 
-public class Main {
+import java.sql.SQLException;
 
-    public static void main(String[] args) {
 
-        // default server settings
-        exception(Exception.class, (e, req, res) -> e.printStackTrace());
-        staticFileLocation("/public");
-        port(8888);
+public class PopulateData {
 
-        // populate some data for the memory storage
-//        populateData();
+    public static void main(String[] args) throws SQLException {
 
-        // Always start with more specific routes
-        get("/hello", (req, res) -> "Hello World");
+        ProductDao productDataStore = new ProductDaoJdbc();
+        ProductCategoryDao productCategoryDataStore = new ProductCategoryDaoJdbc();
+        SupplierDao supplierDataStore = new SupplierDaoJdbc();
 
-        // Always add generic routes to the end
-        get("/", ProductController::renderAllProducts, new ThymeleafTemplateEngine());
-
-        // dynamic route for categories
-        get("/category/:id", ProductController::renderProductsByCategory, new ThymeleafTemplateEngine());
-
-        get("/supplier/:id", ProductController::renderProductsBySupplier, new ThymeleafTemplateEngine());
-
-        get("/cart/add_product/:prodID", ProductController::handleAddToCart, new ThymeleafTemplateEngine());
-
-        get("/cart/review", CartController::renderCart, new ThymeleafTemplateEngine());
-
-        // Add this line to your project to enable the debug screen
-        enableDebugScreen();
-    }
-
-    public static void populateData() {
-
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
-
-        //setting up a new supplier
         Supplier amazon = new Supplier("Amazon", "Digital content and services");
         supplierDataStore.add(amazon);
+        amazon = supplierDataStore.find(1);
         Supplier lenovo = new Supplier("Lenovo", "Computers");
         supplierDataStore.add(lenovo);
+        lenovo = supplierDataStore.find(2);
         Supplier apple = new Supplier("Apple", "Computers");
         supplierDataStore.add(apple);
+        apple = supplierDataStore.find(3);
         Supplier samsung = new Supplier("Samsung", "Electronics");
         supplierDataStore.add(samsung);
+        samsung = supplierDataStore.find(4);
 
         //setting up a new product category
         ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
         productCategoryDataStore.add(tablet);
+        tablet = productCategoryDataStore.find(1);
         ProductCategory notebook = new ProductCategory("Notebook", "Hardware", "A notebook for people that is very nice and useful.");
         productCategoryDataStore.add(notebook);
+        notebook = productCategoryDataStore.find(2);
         ProductCategory phone = new ProductCategory("Phone", "Hardware", "A phone to talk");
         productCategoryDataStore.add(phone);
+        phone = productCategoryDataStore.find(3);
 
         //setting up products and printing it
         productDataStore.add(new Product("Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
         productDataStore.add(new Product("Lenovo IdeaPad Miix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
-        productDataStore.add(new Product("Amazon Fire HD 8", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
+        productDataStore.add(new Product("Amazon Fire HD 8", 895, "USD", "Amazons latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
         productDataStore.add(new Product("Lenovo 310-15IKB 15.6 Laptop", 390, "USD", "Intel Core i5 - 8GB Memory - 1TB Hard Drive", notebook, lenovo));
         productDataStore.add(new Product("Apple MacBook Air® 13.3", 950, "USD", "Intel Core i5 - 8GB Memory - 128GB Flash Storage - Silver", notebook, apple));
         productDataStore.add(new Product("Lenovo Ideapad 110s 11.6", 220, "USD", "Intel Celeron - 2GB Memory - 32GB eMMC Flash Memory", notebook, lenovo));
@@ -79,6 +59,4 @@ public class Main {
         productDataStore.add(new Product("Samsung Galaxy S7 Edge", 689, "USD", "Fantastic Black smartphone", phone, samsung));
 
     }
-
-
 }

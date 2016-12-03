@@ -47,7 +47,7 @@ public class ShoppingCart implements Cart{
     public void addToCart(Product prod, Integer qty) {
         LineItem lineItem = new LineItem(prod, qty);
         for (int i = 0; i < sessionItems.size(); i++) {
-            if (sessionItems.get(i).getProduct() == lineItem.getProduct()) {
+            if (sessionItems.get(i).getProduct().getId() == lineItem.getProduct().getId()) {
                 sessionItems.get(i).increaseQty(lineItem.getQuantity());
                 return;
             }

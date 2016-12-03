@@ -61,4 +61,24 @@ public class BaseModel {
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BaseModel baseModel = (BaseModel) o;
+
+        if (id != baseModel.id) return false;
+        if (!name.equals(baseModel.name)) return false;
+        return description.equals(baseModel.description);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + description.hashCode();
+        return result;
+    }
 }
