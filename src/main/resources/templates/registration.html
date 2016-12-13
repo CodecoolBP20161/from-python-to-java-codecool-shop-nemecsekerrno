@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html llang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header::header"></div>
+</head>
+<body>
+    <div th:replace="fragments/navbar::navbar"></div>
+
+    <form method="post">
+        <div class="container">
+            <h2>Registration</h2>
+            <div class="fist_name">
+            <input type="text"></input>
+            </div>
+            <div class="last_name">
+            <input type="text"></input>
+            </div>
+            <div class="email">
+            <input type="text"></input>
+            </div>
+            <div class="password">
+            <input type="password"></input>
+            </div>
+        </div>
+
+    </form>
+
+    <div th:replace="fragments/footer::copy"></div>
+</body>
+
+</html>

@@ -14,6 +14,6 @@ public class RegistrationController {
     private static Map params = new HashMap<>();
 
     public static ModelAndView renderRegistration(Request req, Response res) {
-        return new ModelAndView(params, "/registration");
+        return new ModelAndView(params, "registration");
     }
 }
