@@ -5,7 +5,7 @@ package com.codecool.shop.controller;
  */
 abstract class PasswordController {
 
-    public String hashPassword(String rawPwd) throws PasswordStorage.CannotPerformOperationException {
+    public static String hashPassword(String rawPwd) throws PasswordStorage.CannotPerformOperationException {
         return PasswordStorage.createHash(rawPwd);
     }
 
