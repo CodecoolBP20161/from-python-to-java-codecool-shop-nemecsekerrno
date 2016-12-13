@@ -8,9 +8,9 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String email;
-    private int password;
+    private String password;
 
-    public Customer(String firstName, String lastName, String email, int password) {
+    public Customer(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -41,11 +41,11 @@ public class Customer {
         this.email = email;
     }
 
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html llang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header::header"></div>
+</head>
+<body>
+    <div th:replace="fragments/navbar::navbar"></div>
+
+    <form action="/registration" method="post">
+        <div class="container">
+            <h2>Registration</h2>
+            <div class="registration fist_name" id="names">
+                <p>First name</p>
+                <input name="c_first_name" type="text" class="required" id="names" onblur="validateNameFormat()"></input>
+
+            </div>
+            <div class="registration input last_name" id="names">
+                <p>Last name</p>
+                <input name="c_last_name" type="text" class="required" id="names" onblur="validateNameFormat()"></input>
+            </div>
+            <div class="registration email">
+                <p>Email</p>
+                <input name="c_email" type="text" class="required" id="email" onblur="validateEmailFormat()"></input>
+            </div>
+            <div class="registration password">
+                <p>Password</p>
+                <input name="c_pw" type="password" class="required" id="password" onblur="validatePasswordFormat()"></input>
+            </div>
+
+            </div>
+            <button class="btn btn-primary submit" type="submit">Valami szöveg</button>
+            <div id="alert"></div>
+        
+
+    </form>
+
+    <div th:replace="fragments/footer::copy"></div>
+</body>
+
+</html>
