@@ -7,7 +7,7 @@
     <div th:replace="fragments/navbar::navbar"></div>
 
     <form method="post">
-        <div class="container">
+        <v class="container">
             <h2>Registration</h2>
             <div class="registration fist_name" id="names">
                 <p>First name</p>
@@ -25,15 +25,8 @@
                 <p>Password</p>
                 <input type="password"  class="required" name="password" onblur="validatePasswordFormat()"></input>
             </div>
-            <div class="registration email">
-                <p>Email</p>
-                <input type="text" class="required" name="email"></input>
-            </div>
-            <div class="registration password">
-                <p>Password</p>
-                <input type="password" class="required" name="password"></input>
-            </div>
             <button class="btn btn-primary submit" type="submit">Valami szöveg</button>
+            <div id="alert"></div>
         </div>
 
     </form>
