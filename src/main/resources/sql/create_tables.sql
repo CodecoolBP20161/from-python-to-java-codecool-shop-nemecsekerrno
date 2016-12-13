@@ -32,6 +32,6 @@ cost_id serial PRIMARY KEY,
 c_first_name VARCHAR(30),
 c_last_name VARCHAR(30),
 c_email VARCHAR(100) UNIQUE NOT NULL,
-c_pw VARCHAR (32)
+c_pw VARCHAR (100)
 );
 
