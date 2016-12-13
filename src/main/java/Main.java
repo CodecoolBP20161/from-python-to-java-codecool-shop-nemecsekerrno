@@ -37,6 +37,7 @@ public class Main {
         get("/cart/review", CartController::renderCart, new ThymeleafTemplateEngine());
 
         get("/registration", RegistrationController::renderRegistration, new ThymeleafTemplateEngine());
+        post("/registration", RegistrationController::handleRegistration, new ThymeleafTemplateEngine());
 
         // Add this line to your project to enable the debug screen
         enableDebugScreen();
