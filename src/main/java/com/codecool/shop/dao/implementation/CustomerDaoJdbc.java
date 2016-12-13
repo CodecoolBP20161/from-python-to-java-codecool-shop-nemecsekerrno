@@ -29,8 +29,7 @@ public class CustomerDaoJdbc implements CustomerDao {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
-        else {
+        } else {
             //here comes the route call that tells the user, that the email is already in the database
         }
     }
