@@ -18,12 +18,13 @@ public class RegistrationController {
     private static CustomerDaoJdbc CustomerHandler = new CustomerDaoJdbc();
 
 
-    public static ModelAndView handleRegistration(Request req, Response res) {
+    public static ModelAndView handleRegistration(Request req, Response res) throws
+            PasswordStorage.CannotPerformOperationException {
         System.out.println(req.attributes());
         String first_name = req.queryParams("c_first_name");
         String last_name = req.queryParams("c_last_name");
         String email = req.queryParams("c_email");
-        String pw = req.queryParams("c_pw");
+        String pw = PasswordController.hashPassword(req.queryParams("c_pw"));
         Customer test = new Customer(first_name, last_name, email, pw);
         try {
             CustomerHandler.add(test);
