@@ -31,7 +31,7 @@ CREATE TABLE costumer
 cost_id serial PRIMARY KEY,
 c_first_name VARCHAR(30),
 c_last_name VARCHAR(30),
-c_email VARCHAR(100),
+c_email UNIQUE VARCHAR(100) NOT NULL,
 c_pw VARCHAR (32)
 );
 
