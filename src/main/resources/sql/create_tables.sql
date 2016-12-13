@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS supplier, product, productcategory, costumer;
+DROP TABLE IF EXISTS supplier, product, productcategory, customer;
 
 CREATE TABLE supplier
 (
@@ -26,12 +26,12 @@ CREATE TABLE product
   p_supplier INTEGER
 );
 
-CREATE TABLE costumer
+CREATE TABLE customer
 (
 cost_id serial PRIMARY KEY,
 c_first_name VARCHAR(30),
 c_last_name VARCHAR(30),
-c_email UNIQUE VARCHAR(100) NOT NULL,
-c_pw VARCHAR (32)
+c_email VARCHAR(100) UNIQUE NOT NULL,
+c_pw VARCHAR (100)
 );
 
