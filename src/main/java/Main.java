@@ -3,6 +3,7 @@ import static spark.debug.DebugScreen.enableDebugScreen;
 
 import com.codecool.shop.controller.CartController;
 import com.codecool.shop.controller.ProductController;
+import com.codecool.shop.controller.RegistrationController;
 import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.implementation.*;
 import com.codecool.shop.model.*;
@@ -34,6 +35,8 @@ public class Main {
         get("/cart/add_product/:prodID", ProductController::handleAddToCart, new ThymeleafTemplateEngine());
 
         get("/cart/review", CartController::renderCart, new ThymeleafTemplateEngine());
+
+        get("/registration", RegistrationController::renderRegistration, new ThymeleafTemplateEngine());
 
         // Add this line to your project to enable the debug screen
         enableDebugScreen();
