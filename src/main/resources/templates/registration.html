@@ -9,24 +9,28 @@
     <form action="/registration" method="post">
         <div class="container">
             <h2>Registration</h2>
-            <div class="registration fist_name">
+            <div class="registration fist_name" id="names">
                 <p>First name</p>
-                <input name="c_first_name" type="text" class="required"></input>
+                <input name="c_first_name" type="text" class="required" id="names" onblur="validateNameFormat()"></input>
+
             </div>
-            <div class="registration input last_name">
+            <div class="registration input last_name" id="names">
                 <p>Last name</p>
-                <input name="c_last_name" type="text" class="required"></input>
+                <input name="c_last_name" type="text" class="required" id="names" onblur="validateNameFormat()"></input>
             </div>
             <div class="registration email">
                 <p>Email</p>
-                <input name="c_email" type="text" class="required"></input>
+                <input name="c_email" type="text" class="required" id="email" onblur="validateEmailFormat()"></input>
             </div>
             <div class="registration password">
                 <p>Password</p>
-                <input name="c_pw" type="password" class="required"></input>
+                <input name="c_pw" type="password" class="required" id="password" onblur="validatePasswordFormat()"></input>
             </div>
-            <button type="submit">Valami szöveg</button>
-        </div>
+
+            </div>
+            <button class="btn btn-primary submit" type="submit">Valami szöveg</button>
+            <div id="alert"></div>
+        
 
     </form>
 
