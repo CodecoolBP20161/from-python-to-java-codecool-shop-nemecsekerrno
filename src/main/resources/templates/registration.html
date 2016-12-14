@@ -11,12 +11,14 @@
             <h2>Registration</h2>
             <div class="registration fist_name" id="names">
                 <p>First name</p>
-                <input name="c_first_name" type="text" class="required" id="names" onblur="validateNameFormat()"></input>
+                <input name="c_first_name" type="text" class="required" id="names" onblur="validateNameFormat()"
+                       th:value="${fname}"></input>
 
             </div>
             <div class="registration input last_name" id="names">
                 <p>Last name</p>
-                <input name="c_last_name" type="text" class="required" id="names" onblur="validateNameFormat()"></input>
+                <input name="c_last_name" type="text" class="required" id="names" onblur="validateNameFormat()"
+                       th:value="${lname}"></input>
             </div>
             <div class="registration email">
                 <p>Email</p>
