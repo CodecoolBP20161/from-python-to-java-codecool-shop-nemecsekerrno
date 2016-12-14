@@ -5,12 +5,12 @@ package com.codecool.shop.controller;
  */
 abstract class PasswordController {
 
-    public static String hashPassword(String rawPwd) throws PasswordStorage.CannotPerformOperationException {
-        return PasswordStorage.createHash(rawPwd);
+    public static String hashPassword(String rawPwd) throws PasswordHandler.CannotPerformOperationException {
+        return PasswordHandler.createHash(rawPwd);
     }
 
-    public boolean verifyPassword(String rawPwd, String hash) throws PasswordStorage.InvalidHashException,
-            PasswordStorage.CannotPerformOperationException {
-        return PasswordStorage.verifyPassword(rawPwd, hash);
+    public boolean verifyPassword(String rawPwd, String hash) throws PasswordHandler.InvalidHashException,
+            PasswordHandler.CannotPerformOperationException {
+        return PasswordHandler.verifyPassword(rawPwd, hash);
     }
 }
