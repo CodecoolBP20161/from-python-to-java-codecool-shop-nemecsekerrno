@@ -17,7 +17,7 @@ public class CustomerDaoJdbc implements CustomerDao {
 
     @Override
     public void add(Customer customer) throws SQLException {
-        String query = "INSERT INTO customer (c_first_name, c_last_name, c_email, c_pw)" +
+        String query = "INSERT INTO customer (cust_first_name, cust_last_name, cust_email, cust_pw)" +
                 " VALUES (?, ?, ?, ?);";
         try (Connection connection = DBController.getConnection();
              PreparedStatement prepStatement = connection.prepareStatement(query)){
@@ -32,7 +32,7 @@ public class CustomerDaoJdbc implements CustomerDao {
     }
 
     public boolean isNewUser(String email) throws SQLException {
-        String query = "SELECT * FROM customer WHERE c_email ='" + email + "';";
+        String query = "SELECT * FROM customer WHERE cust_email ='" + email + "';";
         try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
             ResultSet result = statement.executeQuery(query);
             if (!result.next()) {

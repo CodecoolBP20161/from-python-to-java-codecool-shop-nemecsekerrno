@@ -1,5 +1,5 @@
 function validateFirstNameFormat() {
-    var $name = $('form input[id="firstname"]');
+    var $name = $("#firstname");
     var re = /^[a-zA-Z\s]*$/;
     if (!re.test($name.val())) {
         $(".firstname-error-messages").text("Name cannot contain numbers").fadeIn();
@@ -11,7 +11,7 @@ function validateFirstNameFormat() {
 }
 
 function validateLastNameFormat() {
-    var $name = $('form input[id="lastname"]');
+    var $name = $("#lastname");
     var re = /^[a-zA-Z\s]*$/;
     if (!re.test($name.val())) {
         $(".lastname-error-messages").text("Name cannot contain numbers").fadeIn();
@@ -23,7 +23,7 @@ function validateLastNameFormat() {
 }
 
 function validateEmailFormat() {
-    var $email = $('form input[id="email"]');
+    var $email = $("#email");
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test($email.val())) {
         $(".email-error-messages").text("Incorrect email format").fadeIn();
@@ -35,14 +35,13 @@ function validateEmailFormat() {
 }
 
 function validatePasswordFormat() {
-    var $password = $('form input[id="password"]');
+    var $password = $("#password");
     var re = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}/g;
     if (!re.test($password.val())) {
         $(".password-error-messages").text("Minimum length is 8 characters. Password must contain at least one uppercase, lowercase and number").fadeIn();
         buttonActive(false);
     } else {
         $(".password-error-messages").fadeOut();
-        $("#singlebutton").removeAttr("disabled");
         buttonActive(true);
     }
 }
