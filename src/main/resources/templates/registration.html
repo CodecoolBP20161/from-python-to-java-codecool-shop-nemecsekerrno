@@ -6,29 +6,57 @@
 <body>
     <div th:replace="fragments/navbar::navbar"></div>
 
-    <form method="post">
-        <div class="container">
-            <h2>Registration</h2>
-            <div class="registration fist_name">
-                <p>First name</p>
-                <input type="text" class="required" id="names" onblur="validateNameFormat()"></input>
-            </div>
-            <div class="registration input last_name">
-                <p>Last name</p>
-                <input type="text" class="required" id="names" onblur="validateNameFormat()"></input>
-            </div>
-            <div class="registration email">
-                <p>Email</p>
-                <input type="text" class="required" id="email" onblur="validateEmailFormat()"></input>
-            </div>
-            <div class="registration password">
-                <p>Password</p>
-                <input type="password"  class="required" onblur="validatePasswordFormat()"></input>
-            </div>
-            <button type="submit">Valami szöveg</button>
-        </div>
+    <div class="container">
 
+    <form method="post" class="form-horizontal">
+        <fieldset>
+            <!-- Form Name -->
+            <legend>Register Here</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="firstname">First Name</label>
+                <div class="col-md-4">
+                    <input required="required" id="firstname" name="name" class="form-control input-md" type="text" onkeyup="validateFirstNameFormat()" onblur="validateFirstNameFormat()"></input>
+                    <span class="help-block firstname-error-messages" style="display:none;"> </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="lastname">Last Name</label>
+                <div class="col-md-4">
+                    <input required="required" id="lastname" name="name" class="form-control input-md" type="text" onkeyup="validateLastNameFormat()" onblur="validateLastNameFormat()"></input>
+                    <span class="help-block lastname-error-messages" style="display:none;"> </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="email">Email</label>
+                <div class="col-md-4">
+                    <input required="required" id="email" name="email" class="form-control input-md" type="email" onkeyup="validateEmailFormat()" onblur="validateEmailFormat()"></input>
+                    <span class="help-block email-error-messages" style="display:none;"> </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Password</label>
+                <div class="col-md-4">
+                    <input required="required" id="password" name="password" class="form-control input-md" type="password" onkeyup="validatePasswordFormat()" onblur="validatePasswordFormat()"></input>
+                    <span class="help-block password-error-messages" style="display:none;"> </span>
+                </div>
+            </div>
+
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="singlebutton"> </label>
+                <div class="col-md-4">
+                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </fieldset>
     </form>
+    </div>
 
     <div th:replace="fragments/footer::copy"></div>
 </body>
