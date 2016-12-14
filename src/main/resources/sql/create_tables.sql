@@ -28,10 +28,10 @@ CREATE TABLE product
 
 CREATE TABLE customer
 (
-cost_id serial PRIMARY KEY,
-c_first_name VARCHAR(30),
-c_last_name VARCHAR(30),
-c_email VARCHAR(100) UNIQUE NOT NULL,
-c_pw VARCHAR (100)
+  cust_id serial PRIMARY KEY,
+  cust_first_name VARCHAR(30),
+  cust_last_name VARCHAR(30),
+  cust_email VARCHAR(100) UNIQUE NOT NULL,
+  cust_pw VARCHAR (100)
 );
 
