@@ -19,22 +19,31 @@ public class RegistrationController {
 
 
     public static ModelAndView handleRegistration(Request req, Response res) throws
-            PasswordStorage.CannotPerformOperationException {
-        System.out.println(req.attributes());
+            PasswordStorage.CannotPerformOperationException, SQLException {
         String first_name = req.queryParams("c_first_name");
         String last_name = req.queryParams("c_last_name");
         String email = req.queryParams("c_email");
         String pw = PasswordController.hashPassword(req.queryParams("c_pw"));
-        Customer test = new Customer(first_name, last_name, email, pw);
-        try {
+
+        if (CustomerHandler.isNewUser(email)) {
+            Customer test = new Customer(first_name, last_name, email, pw);
             CustomerHandler.add(test);
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return ProductController.renderAllProducts(req, res);
+        } else {
+            return renderWithBadEmail(req, res, first_name, last_name);
         }
-        return renderRegistration(req, res);
+
     }
 
     public static ModelAndView renderRegistration(Request req, Response res) {
         return new ModelAndView(params, "registration");
     }
+
+    public static ModelAndView renderWithBadEmail(Request req, Response res, String fname, String lname) {
+        params.put("fname", fname);
+        params.put("lname", lname);
+        params.put("email_err", "email_err");
+        return new ModelAndView(params, "registration");
+    }
+
 }
