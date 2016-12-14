@@ -17,7 +17,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="firstname">First Name</label>
                 <div class="col-md-4">
-                    <input required="required" id="firstname" name="name" class="form-control input-md" type="text" onkeyup="validateFirstNameFormat()" onblur="validateFirstNameFormat()"></input>
+                    <input required="required" th:value="${fname}" id="firstname" name="name" class="form-control input-md" type="text" onkeyup="validateFirstNameFormat()" onblur="validateFirstNameFormat()"></input>
                     <span class="help-block firstname-error-messages" style="display:none;"> </span>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="lastname">Last Name</label>
                 <div class="col-md-4">
-                    <input required="required" id="lastname" name="name" class="form-control input-md" type="text" onkeyup="validateLastNameFormat()" onblur="validateLastNameFormat()"></input>
+                    <input required="required" th:value="${lname}" id="lastname" name="name" class="form-control input-md" type="text" onkeyup="validateLastNameFormat()" onblur="validateLastNameFormat()"></input>
                     <span class="help-block lastname-error-messages" style="display:none;"> </span>
                 </div>
             </div>
