@@ -31,7 +31,7 @@ CREATE TABLE customer
   cust_id serial PRIMARY KEY,
   cust_first_name VARCHAR(30),
   cust_last_name VARCHAR(30),
-  cust_email VARCHAR(100) UNIQUE NOT NULL,
+  cust_email VARCHAR(100),
   cust_pw VARCHAR (100)
 );
 
