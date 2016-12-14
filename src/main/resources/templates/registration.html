@@ -17,7 +17,8 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="firstname">First Name</label>
                 <div class="col-md-4">
-                    <input required="required" th:value="${fname}" id="firstname" name="name" class="form-control input-md" type="text" onkeyup="validateFirstNameFormat()" onblur="validateFirstNameFormat()"></input>
+                    <input required="required" th:value="${fname}" id="firstname" name="firstname" class="form-control input-md"
+                           type="text" onkeyup="validateFirstNameFormat()" onblur="validateFirstNameFormat()"></input>
                     <span class="help-block firstname-error-messages" style="display:none;"> </span>
                 </div>
             </div>
@@ -25,7 +26,8 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="lastname">Last Name</label>
                 <div class="col-md-4">
-                    <input required="required" th:value="${lname}" id="lastname" name="name" class="form-control input-md" type="text" onkeyup="validateLastNameFormat()" onblur="validateLastNameFormat()"></input>
+                    <input required="required" th:value="${lname}" id="lastname" name="lastname" class="form-control input-md"
+                           type="text" onkeyup="validateLastNameFormat()" onblur="validateLastNameFormat()"></input>
                     <span class="help-block lastname-error-messages" style="display:none;"> </span>
                 </div>
             </div>
@@ -33,15 +35,23 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="email">Email</label>
                 <div class="col-md-4">
-                    <input required="required" id="email" name="email" class="form-control input-md" type="email" onkeyup="validateEmailFormat()" onblur="validateEmailFormat()"></input>
+                    <input required="required" id="email" name="email" class="form-control input-md" type="email"
+                           onkeyup="validateEmailFormat()" onblur="validateEmailFormat()"></input>
                     <span class="help-block email-error-messages" style="display:none;"> </span>
                 </div>
             </div>
-
+            <!-- Error alert if email already is in database -->
+            <div th:if="${email_err}" class="row">
+                <div class="alert alert-warning alert-dismissable col-md-4 col-md-offset-4">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    <strong>Warning!</strong> That email address is already registered.
+                </div>
+            </div>
             <div class="form-group">
                 <label class="col-md-4 control-label" for="password">Password</label>
                 <div class="col-md-4">
-                    <input required="required" id="password" name="password" class="form-control input-md" type="password" onkeyup="validatePasswordFormat()" onblur="validatePasswordFormat()"></input>
+                    <input required="required" id="password" name="password" class="form-control input-md" type="password"
+                           onkeyup="validatePasswordFormat()" onblur="validatePasswordFormat()"></input>
                     <span class="help-block password-error-messages" style="display:none;"> </span>
                 </div>
             </div>
