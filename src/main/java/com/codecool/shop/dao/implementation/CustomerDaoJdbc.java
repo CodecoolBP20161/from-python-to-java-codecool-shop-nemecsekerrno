@@ -32,14 +32,15 @@ public class CustomerDaoJdbc implements CustomerDao {
     }
 
     public boolean isNewUser(String email) throws SQLException {
-        String query = "SELECT * FROM customer WHERE cust_email ='" + email + "';";
-        try (Connection connection = DBController.getConnection(); Statement statement = connection.createStatement()) {
-            ResultSet result = statement.executeQuery(query);
-            if (!result.next()) {
+        String query = "SELECT * FROM customer WHERE cust_email = ?;";
+        try (Connection connection = DBController.getConnection();
+             PreparedStatement prepStatement = connection.prepareStatement(query)){
+            prepStatement.setString(1, email);
+            ResultSet result= prepStatement.executeQuery();
+            if (!result.next()){
                 return true;
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
