@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html llang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="refresh" content="5;url=http://0.0.0.0:8888/" />
+    <div th:replace="fragments/header::header"></div>
+</head>
+<body>
+    <div th:replace="fragments/navbar::navbar"></div>
+
+    <div class="container">
+
+    <form action="/registration" method="post" class="form-horizontal">
+        <fieldset>
+            <!-- Form Name -->
+            <legend>Register Here</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="firstname">First Name</label>
+                <div class="col-md-4">
+                    <input required="required" th:value="${fname}" id="firstname" name="firstname" class="form-control input-md"
+                           type="text" onkeyup="validateFirstNameFormat()" onblur="validateFirstNameFormat()"></input>
+                    <span class="help-block firstname-error-messages" style="display:none;"> </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="lastname">Last Name</label>
+                <div class="col-md-4">
+                    <input required="required" th:value="${lname}" id="lastname" name="lastname" class="form-control input-md"
+                           type="text" onkeyup="validateLastNameFormat()" onblur="validateLastNameFormat()"></input>
+                    <span class="help-block lastname-error-messages" style="display:none;"> </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="email">Email</label>
+                <div class="col-md-4">
+                    <input required="required" id="email" name="email" class="form-control input-md" type="email"
+                           onkeyup="validateEmailFormat()" onblur="validateEmailFormat()"></input>
+                    <span class="help-block email-error-messages" style="display:none;"> </span>
+                </div>
+            </div>
+            <!-- Error alert if email already is in database -->
+            <div th:if="${email_err}" class="row">
+                <div class="alert alert-warning alert-dismissable col-md-4 col-md-offset-4">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    <strong>Warning!</strong> That email address is already registered.
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Password</label>
+                <div class="col-md-4">
+                    <input required="required" id="password" name="password" class="form-control input-md" type="password"
+                           onkeyup="validatePasswordFormat()" onblur="validatePasswordFormat()"></input>
+                    <span class="help-block password-error-messages" style="display:none;"> </span>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="singlebutton"> </label>
+                <div class="col-md-4">
+                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    </div>
+
+    <div th:replace="fragments/footer::copy"></div>
+</body>
+
+</html>
