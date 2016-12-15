@@ -40,7 +40,7 @@ public class RegistrationController {
         return new ModelAndView(params, "registration/registration");
     }
 
-    public static ModelAndView renderWithBadEmail(Request req, Response res, String fname, String lname) {
+    public ModelAndView renderWithBadEmail(Request req, Response res, String fname, String lname) {
         params.put("fname", fname);
         params.put("lname", lname);
         params.put("email_err", "email_err");
