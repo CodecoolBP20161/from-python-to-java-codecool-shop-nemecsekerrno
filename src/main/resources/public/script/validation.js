@@ -38,7 +38,8 @@ function validatePasswordFormat() {
     var $password = $("#password");
     var re = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}/g;
     if (!re.test($password.val())) {
-        $(".password-error-messages").text("Minimum length is 8 characters. Password must contain at least one uppercase, lowercase and number").fadeIn();
+        $(".password-error-messages").text("Minimum length is 8 characters. Password must contain at least one" +
+            "uppercase, lowercase and number").fadeIn();
         buttonActive(false);
     } else {
         $(".password-error-messages").fadeOut();
