@@ -4,13 +4,13 @@
     <meta http-equiv="refresh" content="10;url=http://0.0.0.0:8888/" />
     <div th:replace="fragments/header::header"></div>
 </head>
-<body>
+<body onload="countdown">
     <div th:replace="fragments/navbar::navbar"></div>
     <div class="container">
         <div class="well well-lg">
             <p>Thank you for your registration!</p>
             <p>You will receive a confirmation email shortly.</p>
-            <p>Returning to Home page in 10 seconds...</p>
+            <p>Returning to Home page in <span id="count"></span> seconds...</p>
         </div>
     </div>
 </body>
