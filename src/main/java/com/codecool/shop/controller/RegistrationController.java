@@ -16,18 +16,19 @@ import java.util.Map;
 public class RegistrationController {
     private static Map params = new HashMap<>();
     private static CustomerDaoJdbc CustomerHandler = new CustomerDaoJdbc();
+    private static EmailSender emailSender = new EmailSender();
 
 
-    public static ModelAndView handleRegistration(Request req, Response res) throws
+    public ModelAndView handleRegistration(Request req, Response res) throws
             PasswordHandler.CannotPerformOperationException, SQLException {
         String firstName = req.queryParams("firstname");
         String lastName = req.queryParams("lastname");
         String email = req.queryParams("email");
         String pw = PasswordController.hashPassword(req.queryParams("password"));
-
         if (CustomerHandler.isNewUser(email)) {
             Customer test = new Customer(firstName, lastName, email, pw);
             CustomerHandler.add(test);
+            emailSender.sendEmail(email, firstName, lastName);
             return renderConfirmation(req, res);
         } else {
             return renderWithBadEmail(req, res, firstName, lastName);
@@ -35,7 +36,7 @@ public class RegistrationController {
 
     }
 
-    public static ModelAndView renderRegistration(Request req, Response res) {
+    public ModelAndView renderRegistration(Request req, Response res) {
         return new ModelAndView(params, "registration/registration");
     }
 
@@ -46,7 +47,7 @@ public class RegistrationController {
         return new ModelAndView(params, "registration/registration");
     }
 
-    public static ModelAndView renderConfirmation(Request req, Response res) {
+    public ModelAndView renderConfirmation(Request req, Response res) {
         return new ModelAndView(params, "registration/registration_conf");
     }
 
