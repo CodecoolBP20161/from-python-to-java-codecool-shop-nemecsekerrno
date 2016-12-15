@@ -28,7 +28,7 @@ public class RegistrationController {
         if (CustomerHandler.isNewUser(email)) {
             Customer test = new Customer(firstName, lastName, email, pw);
             CustomerHandler.add(test);
-            return ProductController.renderAllProducts(req, res);
+            return renderConfirmation(req, res);
         } else {
             return renderWithBadEmail(req, res, firstName, lastName);
         }
@@ -46,7 +46,7 @@ public class RegistrationController {
         return new ModelAndView(params, "registration/registration");
     }
 
-    public static ModelAndView renderConfirmation(Request req, Response response) {
+    public static ModelAndView renderConfirmation(Request req, Response res) {
         return new ModelAndView(params, "registration/registration_conf");
     }
 
