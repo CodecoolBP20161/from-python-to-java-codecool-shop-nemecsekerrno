@@ -12,7 +12,7 @@ public class CartController {
 
     private static Map params = new HashMap<>();
 
-    public static ModelAndView renderCart(Request req, Response res) {
+    public ModelAndView renderCart(Request req, Response res) {
         ShoppingCart cart = req.session().attribute("cart");
         try {
             params.put("lineItems", cart.getSessionItems());

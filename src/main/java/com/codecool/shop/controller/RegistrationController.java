@@ -19,7 +19,7 @@ public class RegistrationController {
     private static EmailSender emailSender = new EmailSender();
 
 
-    public static ModelAndView handleRegistration(Request req, Response res) throws
+    public ModelAndView handleRegistration(Request req, Response res) throws
             PasswordHandler.CannotPerformOperationException, SQLException {
         String firstName = req.queryParams("firstname");
         String lastName = req.queryParams("lastname");
@@ -36,7 +36,7 @@ public class RegistrationController {
 
     }
 
-    public static ModelAndView renderRegistration(Request req, Response res) {
+    public ModelAndView renderRegistration(Request req, Response res) {
         return new ModelAndView(params, "registration/registration");
     }
 
@@ -47,7 +47,7 @@ public class RegistrationController {
         return new ModelAndView(params, "registration/registration");
     }
 
-    public static ModelAndView renderConfirmation(Request req, Response res) {
+    public ModelAndView renderConfirmation(Request req, Response res) {
         return new ModelAndView(params, "registration/registration_conf");
     }
 

@@ -17,6 +17,11 @@ import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class Main {
 
+    final static ProductController productController = new ProductController();
+    final static RegistrationController registrationController = new RegistrationController();
+    final static CartController cartController = new CartController();
+
+
     public static void main(String[] args) {
 
         // default server settings
@@ -31,20 +36,20 @@ public class Main {
         get("/hello", (req, res) -> "Hello World");
 
         // Always add generic routes to the end
-        get("/", ProductController::renderAllProducts, new ThymeleafTemplateEngine());
+        get("/", productController::renderAllProducts, new ThymeleafTemplateEngine());
 
         // dynamic route for categories
-        get("/category/:id", ProductController::renderProductsByCategory, new ThymeleafTemplateEngine());
+        get("/category/:id", productController::renderProductsByCategory, new ThymeleafTemplateEngine());
 
-        get("/supplier/:id", ProductController::renderProductsBySupplier, new ThymeleafTemplateEngine());
+        get("/supplier/:id", productController::renderProductsBySupplier, new ThymeleafTemplateEngine());
 
-        get("/cart/add_product/:prodID", ProductController::handleAddToCart, new ThymeleafTemplateEngine());
+        get("/cart/add_product/:prodID", productController::handleAddToCart, new ThymeleafTemplateEngine());
 
-        get("/cart/review", CartController::renderCart, new ThymeleafTemplateEngine());
+        get("/cart/review", cartController::renderCart, new ThymeleafTemplateEngine());
 
-        get("/registration", RegistrationController::renderRegistration, new ThymeleafTemplateEngine());
-        post("/registration", RegistrationController::handleRegistration, new ThymeleafTemplateEngine());
-        get("/registration/confirmation", RegistrationController::renderConfirmation, new ThymeleafTemplateEngine());
+        get("/registration", registrationController::renderRegistration, new ThymeleafTemplateEngine());
+        post("/registration", registrationController::handleRegistration, new ThymeleafTemplateEngine());
+        get("/registration/confirmation", registrationController::renderConfirmation, new ThymeleafTemplateEngine());
 
         // Add this line to your project to enable the debug screen
         enableDebugScreen();
