@@ -16,6 +16,7 @@ import java.util.Map;
 public class RegistrationController {
     private static Map params = new HashMap<>();
     private static CustomerDaoJdbc CustomerHandler = new CustomerDaoJdbc();
+    private static EmailSender emailSender = new EmailSender();
 
 
     public static ModelAndView handleRegistration(Request req, Response res) throws
@@ -24,10 +25,10 @@ public class RegistrationController {
         String lastName = req.queryParams("lastname");
         String email = req.queryParams("email");
         String pw = PasswordController.hashPassword(req.queryParams("password"));
-
         if (CustomerHandler.isNewUser(email)) {
             Customer test = new Customer(firstName, lastName, email, pw);
             CustomerHandler.add(test);
+            emailSender.sendEmail(email, firstName, lastName);
             return renderConfirmation(req, res);
         } else {
             return renderWithBadEmail(req, res, firstName, lastName);
