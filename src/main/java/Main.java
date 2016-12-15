@@ -1,13 +1,19 @@
-import static spark.Spark.*;
-import static spark.debug.DebugScreen.enableDebugScreen;
-
 import com.codecool.shop.controller.CartController;
 import com.codecool.shop.controller.ProductController;
 import com.codecool.shop.controller.RegistrationController;
-import com.codecool.shop.dao.*;
-import com.codecool.shop.dao.implementation.*;
-import com.codecool.shop.model.*;
+import com.codecool.shop.dao.ProductCategoryDao;
+import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
+import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.model.Product;
+import com.codecool.shop.model.ProductCategory;
+import com.codecool.shop.model.Supplier;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
+
+import static spark.Spark.*;
+import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class Main {
 
@@ -38,6 +44,7 @@ public class Main {
 
         get("/registration", RegistrationController::renderRegistration, new ThymeleafTemplateEngine());
         post("/registration", RegistrationController::handleRegistration, new ThymeleafTemplateEngine());
+        get("/registration/confirmation", RegistrationController::renderConfirmation, new ThymeleafTemplateEngine());
 
         // Add this line to your project to enable the debug screen
         enableDebugScreen();
