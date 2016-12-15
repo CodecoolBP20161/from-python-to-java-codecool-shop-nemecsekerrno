@@ -36,14 +36,18 @@ public class RegistrationController {
     }
 
     public static ModelAndView renderRegistration(Request req, Response res) {
-        return new ModelAndView(params, "registration");
+        return new ModelAndView(params, "registration/registration");
     }
 
     public static ModelAndView renderWithBadEmail(Request req, Response res, String fname, String lname) {
         params.put("fname", fname);
         params.put("lname", lname);
         params.put("email_err", "email_err");
-        return new ModelAndView(params, "registration");
+        return new ModelAndView(params, "registration/registration");
+    }
+
+    public static ModelAndView renderConfirmation(Request req, Response response) {
+        return new ModelAndView(params, "registration/registration_conf");
     }
 
 }
