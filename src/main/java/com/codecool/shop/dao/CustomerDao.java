@@ -10,5 +10,5 @@ import java.sql.SQLException;
 public interface CustomerDao {
 
     void add(Customer customer) throws SQLException;
-    boolean isNewUser(String email) throws SQLException;
+    boolean isNewEmail(String email) throws SQLException;
 }

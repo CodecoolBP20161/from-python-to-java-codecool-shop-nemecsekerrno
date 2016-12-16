@@ -25,9 +25,8 @@ public class RegistrationController {
         String lastName = req.queryParams("lastname");
         String email = req.queryParams("email");
         String pw = PasswordController.hashPassword(req.queryParams("password"));
-        if (CustomerHandler.isNewUser(email)) {
-            Customer test = new Customer(firstName, lastName, email, pw);
-            CustomerHandler.add(test);
+        if (CustomerHandler.isNewEmail(email)) {
+            CustomerHandler.add(new Customer(firstName, lastName, email, pw));
             emailSender.sendEmail(email, firstName, lastName);
             return renderConfirmation(req, res);
         } else {
