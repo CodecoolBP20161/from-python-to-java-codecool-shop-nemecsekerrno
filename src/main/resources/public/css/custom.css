@@ -106,3 +106,25 @@
 {
     font-size: 1.2em;
 }
+
+.registration
+{
+    margin-top: 10px;
+}
+
+.sign-up
+{
+    margin-top: 7px;
+    float: right;
+    position: relative;
+    margin-right: 10px;
+}
+
+.submit
+{
+    margin-top: 10px;
+}
+
+.container
+{
+}

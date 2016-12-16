@@ -18,20 +18,20 @@ public class ProductController {
     private static SupplierDaoJdbc supplierDaoJdbc = new SupplierDaoJdbc();
     private static ProductDaoJdbc productDaoJdbc = new ProductDaoJdbc();
 
-    public static ModelAndView renderAllProducts(Request req, Response res) throws SQLException {
+    public ModelAndView renderAllProducts(Request req, Response res) throws SQLException {
         generalHandler(req);
         UrlController.saveLastURL(req);
         return new ModelAndView(params, "product/viewproducts");
     }
 
-    public static ModelAndView renderProductsByCategory(Request req, Response res) throws SQLException {
+    public ModelAndView renderProductsByCategory(Request req, Response res) throws SQLException {
         ProductCategory productCategory = productCategoryDaoJdbc.find(Integer.parseInt(req.params(":id")));
         filterHandler(req, productCategory);
         UrlController.saveLastURL(req);
         return new ModelAndView(params, "product/viewproducts");
     }
 
-    public static ModelAndView renderProductsBySupplier(Request req, Response res) throws SQLException {
+    public ModelAndView renderProductsBySupplier(Request req, Response res) throws SQLException {
         Supplier supplier = supplierDaoJdbc.find(Integer.parseInt(req.params(":id")));
         filterHandler(req, supplier);
         UrlController.saveLastURL(req);
@@ -39,7 +39,7 @@ public class ProductController {
     }
 
     // handler for shopping cart
-    public static ModelAndView handleAddToCart(Request req, Response res) throws SQLException {
+    public ModelAndView handleAddToCart(Request req, Response res) throws SQLException {
         Product prod = productDaoJdbc.find(Integer.parseInt(req.params(":prodID")));
         Integer qty = Integer.parseInt(req.queryParams("prodQty"));
         ShoppingCart cart = new ShoppingCart();
@@ -53,7 +53,7 @@ public class ProductController {
     }
 
     // handler for general content
-    private static void generalHandler(Request req) throws SQLException {
+    private void generalHandler(Request req) throws SQLException {
         ShoppingCart cart = req.session().attribute("cart");
 
         params.put("categories", productCategoryDaoJdbc.getAll());
@@ -64,14 +64,14 @@ public class ProductController {
     }
 
     // handler for filtering by category
-    private static void filterHandler(Request req, ProductCategory filter) throws SQLException {
+    private void filterHandler(Request req, ProductCategory filter) throws SQLException {
         generalHandler(req);
         params.put("currFilter", filter);
         params.put("products", filter.getProducts());
     }
 
     // handler for filtering by supplier
-    private static void filterHandler(Request req, Supplier filter) throws SQLException {
+    private void filterHandler(Request req, Supplier filter) throws SQLException {
         generalHandler(req);
         params.put("currFilter", filter);
         params.put("products", filter.getProducts());
