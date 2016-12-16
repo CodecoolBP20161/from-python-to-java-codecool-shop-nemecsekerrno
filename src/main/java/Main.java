@@ -1,14 +1,26 @@
+import com.codecool.shop.controller.CartController;
+import com.codecool.shop.controller.ProductController;
+import com.codecool.shop.controller.RegistrationController;
+import com.codecool.shop.dao.ProductCategoryDao;
+import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
+import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.model.Product;
+import com.codecool.shop.model.ProductCategory;
+import com.codecool.shop.model.Supplier;
+import spark.template.thymeleaf.ThymeleafTemplateEngine;
+
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
-import com.codecool.shop.controller.CartController;
-import com.codecool.shop.controller.ProductController;
-import com.codecool.shop.dao.*;
-import com.codecool.shop.dao.implementation.*;
-import com.codecool.shop.model.*;
-import spark.template.thymeleaf.ThymeleafTemplateEngine;
-
 public class Main {
+
+    final static ProductController productController = new ProductController();
+    final static RegistrationController registrationController = new RegistrationController();
+    final static CartController cartController = new CartController();
+
 
     public static void main(String[] args) {
 
@@ -24,16 +36,20 @@ public class Main {
         get("/hello", (req, res) -> "Hello World");
 
         // Always add generic routes to the end
-        get("/", ProductController::renderAllProducts, new ThymeleafTemplateEngine());
+        get("/", productController::renderAllProducts, new ThymeleafTemplateEngine());
 
         // dynamic route for categories
-        get("/category/:id", ProductController::renderProductsByCategory, new ThymeleafTemplateEngine());
+        get("/category/:id", productController::renderProductsByCategory, new ThymeleafTemplateEngine());
 
-        get("/supplier/:id", ProductController::renderProductsBySupplier, new ThymeleafTemplateEngine());
+        get("/supplier/:id", productController::renderProductsBySupplier, new ThymeleafTemplateEngine());
 
-        get("/cart/add_product/:prodID", ProductController::handleAddToCart, new ThymeleafTemplateEngine());
+        get("/cart/add_product/:prodID", productController::handleAddToCart, new ThymeleafTemplateEngine());
 
-        get("/cart/review", CartController::renderCart, new ThymeleafTemplateEngine());
+        get("/cart/review", cartController::renderCart, new ThymeleafTemplateEngine());
+
+        get("/registration", registrationController::renderRegistration, new ThymeleafTemplateEngine());
+        post("/registration", registrationController::handleRegistration, new ThymeleafTemplateEngine());
+        get("/registration/confirmation", registrationController::renderConfirmation, new ThymeleafTemplateEngine());
 
         // Add this line to your project to enable the debug screen
         enableDebugScreen();
