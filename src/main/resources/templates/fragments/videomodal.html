@@ -2,10 +2,9 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <body>
-<div th:fragment="videomodal">
+<div th:fragment="videomodal" class="col-xs-12 col-md-2" id="youtube-modal">
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
+    <img src="/img/icon-yt.png" id="youtube-icon" data-toggle="modal" data-target="#myModal"/>
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
