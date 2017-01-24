@@ -3,12 +3,17 @@
 }
 
 #youtube-modal {
-    margin-top: -4px;
+    margin-right: -7px;
+    margin-left: 7px;
+    margin-top: -1px;
+    padding: 0px;
 }
 
 #youtube-icon {
+    height: 37px;
     cursor: pointer;
     margin: 0px;
+    float: right;
 }
 
 .glyphicon {
