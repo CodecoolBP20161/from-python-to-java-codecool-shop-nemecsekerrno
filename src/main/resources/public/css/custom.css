@@ -2,6 +2,17 @@
     padding-bottom: 15px;
 }
 
+#youtube-div {
+    margin-top: -5px;
+}
+
+#youtube-link {
+    height: 45px;
+    width: 45px;
+    margin: 0px;
+    padding: 0px;
+}
+
 .glyphicon {
     margin-right:5px;
 }
