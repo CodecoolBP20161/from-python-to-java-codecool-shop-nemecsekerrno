@@ -2,15 +2,13 @@
     padding-bottom: 15px;
 }
 
-#youtube-div {
-    margin-top: -5px;
+#youtube-modal {
+    margin-top: -4px;
 }
 
-#youtube-link {
-    height: 45px;
-    width: 45px;
+#youtube-icon {
+    cursor: pointer;
     margin: 0px;
-    padding: 0px;
 }
 
 .glyphicon {
