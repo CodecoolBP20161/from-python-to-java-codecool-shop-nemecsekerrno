@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="videomodal" class="col-xs-12 col-md-2" id="youtube-modal">
+    <!-- Trigger the modal with a button -->
+    <img src="/img/yt-icon-rect.gif" id="youtube-icon" th:attr="data-prod-id=${prod.getId()}" data-toggle="modal" data-target="#myModal"/>
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" th:text="'Review of ' + ${prod.getId()}"></h4>
+                </div>
+                <div class="modal-body">
+                    <!--<img class="loading" src="/img/loading_icon.gif"></img>-->
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/tY_EN4Maobc" frameborder="0"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
