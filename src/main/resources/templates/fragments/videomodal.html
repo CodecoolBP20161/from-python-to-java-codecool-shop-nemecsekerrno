@@ -13,9 +13,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Review video</h4>
+                    <h4 class="modal-title" th:text="'Review of ' + ${prod.getName()}"></h4>
                 </div>
                 <div class="modal-body">
+                    <!--<img class="loading" src="/img/loading_icon.gif"></img>-->
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/tY_EN4Maobc" frameborder="0"></iframe>
                 </div>
                 <div class="modal-footer">
