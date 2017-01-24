@@ -3,17 +3,19 @@
  */
 
 $(document).ready(function() {
-    $('#youtube-icon').click(sendData)
-    });
+    $('.youtube-icon').on('click', function() {
+        sendData(this);
+    })
+});
 
-var sendData = function() {
+var sendData = function(button) {
     console.log("sdéjklfélkasd");
-    var prodId = $('#youtube-icon').data("prod-id");
+    var prodId = $(button).data("prod-id");
     console.log(prodId);
     $.ajax({
-    url: '/getvideo/' + prodId,
-    method: 'POST'
-    // success:function(response){
+        url: '/getvideo/' + prodId,
+        method: 'POST'
+        // success:function(response){
     })
 
 };
