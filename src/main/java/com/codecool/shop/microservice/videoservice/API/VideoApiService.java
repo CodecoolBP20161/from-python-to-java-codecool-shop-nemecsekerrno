@@ -4,6 +4,9 @@ import java.net.URI;
 
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -22,9 +25,12 @@ public class VideoApiService {
         return INSTANCE;
     }
 
-    public String getVideos(String productName) throws URISyntaxException, IOException {
-        String response = execute(new URIBuilder(SERVICE_URL + "/apivideos?search=" +productName).build());
-        return response;
+    public String getVideo(String productName) throws URISyntaxException, IOException {
+        String response = execute(new URIBuilder(SERVICE_URL + "/apivideos?search=" + productName).build());
+        JSONArray rawData = new JSONArray(response);
+        JSONObject review = new JSONObject(rawData.get(1).toString());
+        String embedCode = review.getString("embed code");
+        return embedCode;
     }
 
     private String execute(URI uri) throws IOException {
@@ -33,18 +39,5 @@ public class VideoApiService {
                 .returnContent()
                 .asString();
     }
-
-//    public static void main(String[] args) {
-//        VideoApiService api = VideoApiService.getINSTANCE();
-//        String result = "";
-//        try {
-//            result = api.getVideos("szelfibot");
-//        } catch (URISyntaxException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println(result);
-//    }
 
 }
