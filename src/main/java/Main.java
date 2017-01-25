@@ -7,6 +7,8 @@ import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.microservice.videoservice.API.VideoApiService;
+import com.codecool.shop.microservice.videoservice.VideoApiController;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
@@ -20,6 +22,8 @@ public class Main {
     final static ProductController productController = new ProductController();
     final static RegistrationController registrationController = new RegistrationController();
     final static CartController cartController = new CartController();
+    final static VideoApiService videoApiService = VideoApiService.getINSTANCE();
+    final static VideoApiController videoApiController = new VideoApiController(videoApiService);
 
 
     public static void main(String[] args) {
@@ -50,6 +54,9 @@ public class Main {
         get("/registration", registrationController::renderRegistration, new ThymeleafTemplateEngine());
         post("/registration", registrationController::handleRegistration, new ThymeleafTemplateEngine());
         get("/registration/confirmation", registrationController::renderConfirmation, new ThymeleafTemplateEngine());
+
+        // Route for getVideo.js request to get data from Video API
+        get("/getvideo", videoApiController :: getVideo, new ThymeleafTemplateEngine());
 
         // Add this line to your project to enable the debug screen
         enableDebugScreen();
