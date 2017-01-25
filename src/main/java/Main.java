@@ -56,7 +56,7 @@ public class Main {
         get("/registration/confirmation", registrationController::renderConfirmation, new ThymeleafTemplateEngine());
 
         // Route for getVideo.js request to get data from Video API
-        get("/getvideo", videoApiController :: getVideo, new ThymeleafTemplateEngine());
+        get("/getvideo", videoApiController :: getVideo);
 
         // Add this line to your project to enable the debug screen
         enableDebugScreen();

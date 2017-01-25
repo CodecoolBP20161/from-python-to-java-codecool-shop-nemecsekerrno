@@ -21,11 +21,13 @@ public class VideoApiController {
         this.apiService = apiService;
     }
 
-    public ModelAndView getVideo(Request request, Response response) throws SQLException, IOException, URISyntaxException {
+    public String getVideo(Request request, Response response) throws SQLException, IOException, URISyntaxException {
         Integer prodId = Integer.parseInt(request.queryParams("id"));
         Product prod = new ProductDaoJdbc().find(prodId);
+        response.type("text/xml");
+        response.body(apiService.getVideo(prod.getName()));
         System.out.println(apiService.getVideo(prod.getName()));
-        return null;
+        return apiService.getVideo(prod.getName());
     }
 
 }
