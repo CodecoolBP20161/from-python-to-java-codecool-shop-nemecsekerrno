@@ -14,7 +14,14 @@
     cursor: pointer;
     position: relative;
     bottom: 10px;
-    left: 25px;
+}
+
+.input-group {
+    right: 25px;
+}
+
+.form-control {
+    width: 180%; !important;
 }
 
 .glyphicon {
