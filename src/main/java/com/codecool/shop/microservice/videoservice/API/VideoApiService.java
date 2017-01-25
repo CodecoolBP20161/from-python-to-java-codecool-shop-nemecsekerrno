@@ -29,9 +29,13 @@ public class VideoApiService {
         URIBuilder builder = new URIBuilder(SERVICE_URL).addParameter("search", productName);
         String response = execute(builder.build());
         JSONArray rawData = new JSONArray(response);
-        JSONObject review = new JSONObject(rawData.get(1).toString());
-        String embedCode = review.getString("embed code");
-        return embedCode;
+        if (rawData.length() < 1) {
+            return "<h3 class=\"no-video\">No review video found, sorry</h3>";
+        } else {
+            JSONObject review = new JSONObject(rawData.get(1).toString());
+            String embedCode = review.getString("embed code");
+            return embedCode;
+        }
     }
 
     private String execute(URI uri) throws IOException {
