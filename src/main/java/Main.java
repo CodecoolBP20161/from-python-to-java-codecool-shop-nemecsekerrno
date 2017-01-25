@@ -7,6 +7,8 @@ import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.microservice.shippingcostservice.API.ShippingCostApiService;
+import com.codecool.shop.microservice.shippingcostservice.ShippingCostApiController;
 import com.codecool.shop.microservice.videoservice.API.VideoApiService;
 import com.codecool.shop.microservice.videoservice.VideoApiController;
 import com.codecool.shop.model.Product;
@@ -24,6 +26,8 @@ public class Main {
     final static CartController cartController = new CartController();
     final static VideoApiService videoApiService = VideoApiService.getINSTANCE();
     final static VideoApiController videoApiController = new VideoApiController(videoApiService);
+    final static ShippingCostApiService shippingCostApiService = ShippingCostApiService.getINSTANCE();
+    final static ShippingCostApiController shippingCostApiController = new ShippingCostApiController(shippingCostApiService);
 
 
     public static void main(String[] args) {
@@ -57,6 +61,8 @@ public class Main {
 
         // Route for getVideo.js request to get data from Video API
         get("/getvideo", videoApiController :: getVideo);
+
+        get("/getshippingcost", shippingCostApiController :: getShippingCost);
 
         // Add this line to your project to enable the debug screen
         enableDebugScreen();
