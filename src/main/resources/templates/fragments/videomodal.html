@@ -6,7 +6,7 @@
     <!-- Trigger the modal with a button -->
     <img src="/img/yt-icon-rect.gif" class="youtube-icon" th:attr="data-prod-id=${prod.getId()}, data-prod-name=${prod.getName()}" data-toggle="modal" data-target="#myModal"/>
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
+    <div id="myModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
 
             <!-- Modal content-->
