@@ -10,14 +10,30 @@ $(document).ready(function() {
 
 var sendData = function(button) {
     console.log("sdéjklfélkasd");
+    $('.loading').show();
     var prodId = $(button).data("prod-id");
-    console.log(prodId);
+    var prodName = $().data("prod-name");
+    console.log(prodName);
+    $('.modal-header').html("Review of " + prodName);
     $.ajax({
-        url: '/getvideo/' + prodId,
-        method: 'POST'
-        // success:function(response){
+        url: '/getvideo?id=' + prodId,
+        method: 'GET',
+        dataType: "text",
+        success: function (data) {
+            $('.loading').hide();
+            $('.modal-body').html(data);
+            $('.modal-close').on('click', function () {
+                stopVideo($('.video'));
+            });
+        }
     })
 
+};
+
+var stopVideo = function(player) {
+    var vidSrc = player.prop('src');
+    player.prop('src', ''); // to force it to pause
+    player.prop('src', vidSrc);
 };
 
 
