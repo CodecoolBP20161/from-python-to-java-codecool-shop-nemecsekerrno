@@ -2,25 +2,29 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <body>
+
 <div th:fragment="videomodal">
     <!-- Trigger the modal with a button -->
     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
+
         <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Review video</h4>
+
+                    <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/tY_EN4Maobc" frameborder="0"></iframe>
+                    <img class="loading" src="/img/loading_icon.gif"/>
+                    <div class="video-body"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default modal-close" data-dismiss="modal">Close</button>
                 </div>
             </div>
 

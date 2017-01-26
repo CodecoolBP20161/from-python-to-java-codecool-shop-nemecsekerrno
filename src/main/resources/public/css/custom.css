@@ -2,129 +2,146 @@
     padding-bottom: 15px;
 }
 
+#youtube-modal {
+    margin-right: -7px;
+    margin-left: 7px;
+    margin-top: -1px;
+    padding: 0px;
+}
+
+.youtube-icon {
+    height: 37px;
+    cursor: pointer;
+    position: relative;
+    bottom: 10px;
+}
+
+.input-group {
+    right: 25px;
+}
+
+.form-control,
+.input-group {
+    width: 120%; !important;
+}
+
 .glyphicon {
     margin-right:5px;
 }
-.thumbnail
-{
+
+.thumbnail {
     margin-bottom: 20px;
     padding: 0px;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
 }
-.thumbnail img
-{
+
+.thumbnail img {
     margin-top: 10px;
 }
-.row
-{
+
+.row {
     display: flex;
     flex-wrap: wrap;
 }
-.item.list-group-item
-{
+
+.item.list-group-item {
     float: none;
     width: 100%;
     background-color: #fff;
     margin-bottom: 10px;
 }
-.item.list-group-item:nth-of-type(odd):hover,.item.list-group-item:hover
-{
+
+.item.list-group-item:nth-of-type(odd):hover,.item.list-group-item:hover {
     background: #428bca;
 }
 
-.item.list-group-item .list-group-image
-{
+.item.list-group-item .list-group-image {
     margin-right: 10px;
 }
-.item.list-group-item .thumbnail
-{
+
+.item.list-group-item .thumbnail {
     margin-bottom: 0px;
 }
-.item.list-group-item .caption
-{
+
+.item.list-group-item .caption {
     padding: 9px 9px 0px 9px;
 }
-.item.list-group-item:nth-of-type(odd)
-{
+
+.item.list-group-item:nth-of-type(odd) {
     background: #eeeeee;
 }
 
-.item.list-group-item:before, .item.list-group-item:after
-{
+.item.list-group-item:before, .item.list-group-item:after {
     display: table;
     content: " ";
 }
 
-.item.list-group-item img
-{
+.item.list-group-item img {
     float: left;
 }
-.item.list-group-item:after
-{
+
+.item.list-group-item:after {
     clear: both;
 }
-.list-group-item-text
-{
+
+.list-group-item-text {
     margin: 0 0 11px;
 }
 
-.category-drop
-{
+.category-drop {
     z-index: 1;
     cursor: pointer;
     position: relative;
     display: inline-block;
 }
 
-.supplier-drop
-{
+.supplier-drop {
     z-index: 1;
     cursor: pointer;
     position: relative;
     display: inline-block;
 }
 
-.btn
-{
+.btn {
     margin-bottom: 10px;
 }
 
-.container
-{
+.container {
     margin-top: 80px;
 }
 
-.cart
-{
+.cart {
     margin-top: 7px;
     float: right;
 }
 
-.glyphicon-piggy-bank
-{
+.glyphicon-piggy-bank {
     font-size: 1.2em;
 }
 
-.registration
-{
+.registration {
     margin-top: 10px;
 }
 
-.sign-up
-{
+.sign-up {
     margin-top: 7px;
     float: right;
     position: relative;
     margin-right: 10px;
 }
 
-.submit
-{
+.submit {
     margin-top: 10px;
 }
 
-.container
-{
+.loading {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.no-video {
+    text-align: center
 }
