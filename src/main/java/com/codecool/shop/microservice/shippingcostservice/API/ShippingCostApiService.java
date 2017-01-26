@@ -2,7 +2,6 @@ package com.codecool.shop.microservice.shippingcostservice.API;
 
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
