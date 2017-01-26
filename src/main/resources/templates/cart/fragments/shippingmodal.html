@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="shippingmodal" class="col-xs-12 col-md-2" id="shipping-modal">
+    <!-- Trigger the modal with a button -->
+    <button class="btn btn-warning" type="button" id="calculate-shipping" data-toggle="modal" data-target="#shippingModal">Calculate</button>
+    <!--<img src="/img/yt-icon-rect.gif" class="youtube-icon" th:attr="data-prod-id=${prod.getId()}, data-prod-name=${prod.getName()}" data-toggle="modal" data-target="#shippingModal"/>-->
+    <!-- Modal -->
+    <div id="shippingModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Please choose a shipping option...</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="radio">
+                        <label id="express"></label>
+                    </div>
+                    <div class="radio">
+                        <label id="truck"></label>
+                    </div>
+                    <div class="radio">
+                        <label id="truckhighway"></label>
+                    </div>
+                    <div class="radio">
+                        <label id="timeMachine"></label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default modal-close-shipping" data-dismiss="modal">Submit</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

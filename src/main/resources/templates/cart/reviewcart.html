@@ -2,36 +2,41 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header"></div>
+
 </head>
 <body>
     <div th:replace="fragments/navbar :: navbar"></div>
 
     <div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Unit Price</th>
-                    <th>Subtotal</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="item : ${lineItems}">
-                    <td th:text="${item.getProduct().name}">Product Name</td>
-                    <td th:text="${item.getQuantity()}">Qty</td>
-                    <td th:text="${item.getProduct().getPrice()}">Unite Price</td>
-                    <td th:text="${item.getTotalPriceString()}">Subtotal</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3">Total</td>
-                    <td colspan="1" th:text="${total}">Total price</td>
-                </tr>
-            </tfoot>
-        </table>
-        <div>
+        <div class="col-lg-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item : ${lineItems}">
+                        <td th:text="${item.getProduct().name}">Product Name</td>
+                        <td th:text="${item.getQuantity()}">Qty</td>
+                        <td th:text="${item.getProduct().getPrice()}">Unite Price</td>
+                        <td th:text="${item.getTotalPriceString()}">Subtotal</td>
+                    </tr>
+                    <div th:replace="cart/fragments/shippingitem :: shippingitem"></div>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Total</td>
+                        <td colspan="1" th:text="${total}">Total price</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div th:replace="cart/fragments/shippingaddress :: shippingaddress"></div>
+        <div class="col-lg-8">
             <a href="/" class="btn btn-lg btn-primary">Continue shopping</a>
             <a href="#" class="btn btn-lg btn-warning">Checkout</a>
         </div>

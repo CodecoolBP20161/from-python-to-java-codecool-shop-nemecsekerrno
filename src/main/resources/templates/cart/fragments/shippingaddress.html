@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="shippingaddress">
+    <div class="col-lg-6">
+        <p>Enter your shipping details below to calculate shipping time and costs:</p>
+        <div class="form-group col-lg-6">
+            <input type="text" class="form-control" placeholder="Country" id="user-country"></input>
+            <input type="text" class="form-control" placeholder="City" id="user-city"></input>
+            <input type="text" class="form-control" placeholder="Address" id="user-address"></input>
+            <input type="text" class="form-control" placeholder="Postal code" id="user-postcode"></input>
+            <div th:replace="cart/fragments/shippingmodal :: shippingmodal"></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

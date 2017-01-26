@@ -2,6 +2,14 @@
     padding-bottom: 15px;
 }
 
+.form-group {
+    padding-left: 0px;
+}
+
+.form-control {
+    margin-bottom: 3px;
+}
+
 #youtube-modal {
     margin-right: -7px;
     margin-left: 7px;
