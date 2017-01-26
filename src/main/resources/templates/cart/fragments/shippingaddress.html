@@ -10,7 +10,7 @@
             <input type="text" class="form-control" placeholder="City" id="user-city"></input>
             <input type="text" class="form-control" placeholder="Address" id="user-address"></input>
             <input type="text" class="form-control" placeholder="Postal code" id="user-postcode"></input>
-            <button class="btn btn-warning" type="button" id="calculate-shipping">Calculate</button>
+            <div th:replace="cart/fragments/shippingmodal :: shippingmodal"></div>
         </div>
     </div>
 </div>
