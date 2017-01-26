@@ -4,8 +4,8 @@
 
 <div th:fragment="shippingitem">
     <tr>
-        <td id="shipping-type">Shipping type</td>
-        <td>1</td>
+        <td id="shipping-type">Shipping</td>
+        <td></td>
         <td class="shipping-cost" th:text="*{shipping != null}? *{shipping.getPrice()} +'' : ''"></td>
         <td class="shipping-cost" th:text="*{shipping != null}? *{shipping.getPrice()} +'' : ''"></td>
     </tr>
