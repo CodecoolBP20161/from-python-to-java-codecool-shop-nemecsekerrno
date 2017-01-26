@@ -4,15 +4,16 @@
 $(document).ready(function(){
    $("#calculate-shipping").click(function() {
        sendToServer();
-        // sendToServer($('#user-address').value)
    });
 });
 
 var sendToServer = function() {
+    var country = $('#user-country').val();
+    var postcode = $('#user-postcode').val();
+    var city = $("#user-city").val();
     var address = $("#user-address").val();
-    console.log(address);
     $.ajax({
-        url: '/getshippingcost?address=' + address,
+        url: '/getshippingcost?address=' + postcode +country + city + address,
         method: 'GET',
         dataType: 'json',
         success: function (data) {
@@ -27,5 +28,4 @@ var sendToServer = function() {
         //     alert('Error: ' + errorMessage);
         // }
     })
-
 };
