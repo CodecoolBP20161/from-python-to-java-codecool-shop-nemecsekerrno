@@ -1,6 +1,8 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.model.Shipping;
 import com.codecool.shop.model.ShoppingCart;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -11,9 +13,12 @@ import java.util.Map;
 public class CartController {
 
     private static Map params = new HashMap<>();
+    private ShoppingCart cart;
 
     public ModelAndView renderCart(Request req, Response res) {
-        ShoppingCart cart = req.session().attribute("cart");
+        if (cart == null) {
+            cart = req.session().attribute("cart");
+        }
         try {
             params.put("lineItems", cart.getSessionItems());
             params.put("total", cart.getTotalPriceString());
@@ -23,5 +28,18 @@ public class CartController {
             res.redirect(UrlController.getLastURL(req));
             return null;
         }
+    }
+
+    public ModelAndView renderCartWithShipping(Request req, Response res) {
+        cart = req.session().attribute("cart");
+        float shippingCost = Float.parseFloat(req.queryParams("shippingcost"));
+        if (cart.getShippingOption() == null) {
+            Shipping shipping = new Shipping("Shipping", "Shipping", shippingCost, "USD");
+            cart.addShipping(shipping);
+        } else {
+            cart.getShippingOption().setDefaultPrice(shippingCost);
+        }
+        params.put("shipping", cart.getShippingOption());
+        return renderCart(req, res);
     }
 }
