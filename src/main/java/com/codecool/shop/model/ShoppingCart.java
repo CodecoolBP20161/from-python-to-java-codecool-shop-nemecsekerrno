@@ -9,6 +9,7 @@ import java.util.List;
 public class ShoppingCart implements Cart{
 
     private List<LineItem> sessionItems = new ArrayList<>();
+    private Shipping shippingOption;
 
     public List<LineItem> getSessionItems() {
         return sessionItems;
@@ -31,6 +32,9 @@ public class ShoppingCart implements Cart{
         for (int i = 0; i < sessionItems.size(); i++) {
             total += sessionItems.get(i).getTotalPrice();
         }
+        if (shippingOption != null) {
+            total += shippingOption.getDefaultPrice();
+        }
         return total;
     }
 
@@ -49,11 +53,17 @@ public class ShoppingCart implements Cart{
         for (int i = 0; i < sessionItems.size(); i++) {
             if (sessionItems.get(i).getProduct().getId() == lineItem.getProduct().getId()) {
                 sessionItems.get(i).increaseQty(lineItem.getQuantity());
-                return;
             }
         }
         sessionItems.add(lineItem);
-        return;
+    }
+
+    public void addShipping(Shipping shipping) {
+        shippingOption = shipping;
+    }
+
+    public Shipping getShippingOption() {
+        return shippingOption;
     }
 
     public LineItem getLineItem(int i){
