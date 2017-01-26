@@ -2,17 +2,21 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <body>
-<div th:fragment="videomodal" class="col-xs-12 col-md-2" id="youtube-modal">
+
+<div th:fragment="videomodal">
     <!-- Trigger the modal with a button -->
-    <img src="/img/yt-icon-rect.gif" class="youtube-icon" th:attr="data-prod-id=${prod.getId()}, data-prod-name=${prod.getName()}" data-toggle="modal" data-target="#video-modal"/>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
     <!-- Modal -->
-    <div id="video-modal" class="modal fade" role="dialog" tabindex="-1">
+    <div id="myModal" class="modal fade" role="dialog">
+
         <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+
                     <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
