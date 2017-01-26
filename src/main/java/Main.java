@@ -54,6 +54,7 @@ public class Main {
         get("/cart/add_product/:prodID", productController::handleAddToCart, new ThymeleafTemplateEngine());
 
         get("/cart/review", cartController::renderCart, new ThymeleafTemplateEngine());
+        get("cart/reviewcomplete", cartController::renderCartWithShipping, new ThymeleafTemplateEngine());
 
         get("/registration", registrationController::renderRegistration, new ThymeleafTemplateEngine());
         post("/registration", registrationController::handleRegistration, new ThymeleafTemplateEngine());
