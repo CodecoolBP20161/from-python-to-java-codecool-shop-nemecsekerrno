@@ -26,7 +26,7 @@ $(document).ready(function() {
                 $('.video-body').html(errorMessage);
             },
             complete: function () {
-                $('.modal-close').on('click', function () {
+                $('#myModal').on('hidden.bs.modal', function () {
                     $('.video-body').empty();
                 });
             }
