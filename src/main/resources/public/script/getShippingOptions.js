@@ -6,6 +6,10 @@ $(document).ready(function(){
        $("label").empty();
        sendToServer();
    });
+    $(".modal-close-shipping").click(function() {
+        var cost = $('input[name=optradio]:checked').val();
+        updateCart(cost);
+    })
 });
 
 var sendToServer = function() {
@@ -18,26 +22,30 @@ var sendToServer = function() {
         method: 'GET',
         dataType: 'json',
         success: function (data) {
-            $("#express").html("<input type=\"radio\" name=\"optradio\">" +
+            $("#express").html("<input type=\"radio\" name=\"optradio\" value=" + data.expressCourier.cost + data.expressCourier.currency +">" +
                 data.expressCourier.details + " - " +
                 data.expressCourier.timeInHours + " hours - " +
                 data.expressCourier.cost + " " + data.expressCourier.currency +
                 "</input>");
-            $("#truck").html("<input type=\"radio\" name=\"optradio\">" +
+            $("#truck").html("<input type=\"radio\" name=\"optradio\" value=" + data.truck.cost + data.truck.currency + ">" +
                 data.truck.details + " - " +
                 data.truck.timeInHours + " hours - " +
                 data.truck.cost + " " + data.truck.currency +
                 "</input>");
-            $("#truckhighway").html("<input type=\"radio\" name=\"optradio\">" +
+            $("#truckhighway").html("<input type=\"radio\" name=\"optradio\" value=" + data.truckViaHighway.cost + data.truckViaHighway.currency + ">" +
                 data.truckViaHighway.details + " - " +
                 data.truckViaHighway.timeInHours + " hours - " +
                 data.truckViaHighway.cost + " " + data.truckViaHighway.currency +
                 "</input>");
-            $("#timeMachine").html("<input type=\"radio\" name=\"optradio\">" +
+            $("#timeMachine").html("<input type=\"radio\" name=\"optradio\" value=" + data.timeMachine.cost + data.timeMachine.currency + ">" +
                 data.timeMachine.details + " - " +
                 data.timeMachine.timeInHours + " hours - " +
                 data.timeMachine.cost + " " + data.timeMachine.currency +
                 "</input>");
         }
     })
+};
+
+var updateCart = function(cost) {
+    $(".shipping-cost").html(cost);
 };
