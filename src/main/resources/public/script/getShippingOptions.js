@@ -16,10 +16,13 @@ var sendToServer = function() {
         method: 'GET',
         dataType: 'json',
         success: function (data) {
-            console.log("kiskutyafasza");
             console.log(data);
-            console.log(JSON.stringify(data));
-        },
+            console.log(data.expressCourier);
+            console.log(data.truck);
+            console.log(data.truckViaHighway);
+            console.log(data.timeMachine);
+            console.log(data.timeMachine.details)
+        }
         // error: function(request, errorType, errorMessage) {
         //     alert('Error: ' + errorMessage);
         // }
