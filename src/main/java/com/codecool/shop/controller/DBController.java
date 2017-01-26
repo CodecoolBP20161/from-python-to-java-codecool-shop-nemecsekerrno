@@ -4,8 +4,8 @@ import java.sql.*;
 
 public abstract class DBController {
     private static final String DATABASE = "jdbc:postgresql://localhost:5432/codecoolshop";
-    private static final String DB_USER = "postgres";
-    private static final String DB_PASSWORD = "postgres";
+    private static final String DB_USER = "berloc";
+    private static final String DB_PASSWORD = "codecool2016";
 
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
