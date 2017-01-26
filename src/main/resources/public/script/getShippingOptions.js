@@ -13,6 +13,7 @@ $(document).ready(function(){
 });
 
 var sendToServer = function() {
+    $('.error').hide();
     var country = $('#user-country').val();
     var postcode = $('#user-postcode').val();
     var city = $("#user-city").val();
@@ -21,8 +22,16 @@ var sendToServer = function() {
         url: '/getshippingcost?address=' + postcode +country + city + address,
         method: 'GET',
         dataType: 'json',
-        success: function (data) {
+        success: function(data) {
+            $('.shipping-options').show();
             chooseOption(data);
+        },
+        error: function(request, errorType, errorMessage) {
+            $('.shipping-options').hide();
+            $('.error').show();
+        },
+        complete: function() {
+            $('.shipping-options')
         }
     })
 };
