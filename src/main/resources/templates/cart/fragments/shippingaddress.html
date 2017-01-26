@@ -4,12 +4,13 @@
 
 <div th:fragment="shippingaddress">
     <div class="col-lg-6">
-        <p>Enter an address here to calculate shipping time and costs:</p>
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Shipping address..." id="user-address"></input>
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button" id="calculate-shipping">Calculate</button>
-            </span>
+        <p>Enter your shipping details below to calculate shipping time and costs:</p>
+        <div class="form-group col-lg-6">
+            <input type="text" class="form-control" placeholder="Country" id="user-country"></input>
+            <input type="text" class="form-control" placeholder="City" id="user-city"></input>
+            <input type="text" class="form-control" placeholder="Address" id="user-address"></input>
+            <input type="text" class="form-control" placeholder="Postal code" id="user-postcode"></input>
+            <button class="btn btn-warning" type="button" id="calculate-shipping">Calculate</button>
         </div>
     </div>
 </div>
