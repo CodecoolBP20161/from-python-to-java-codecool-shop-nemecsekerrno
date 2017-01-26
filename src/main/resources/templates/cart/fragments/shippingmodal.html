@@ -4,7 +4,7 @@
 <body>
 <div th:fragment="shippingmodal" class="col-xs-12 col-md-2" id="shipping-modal">
     <!-- Trigger the modal with a button -->
-    <button class="btn btn-warning" type="button" id="calculate-shipping" data-toggle="modal" data-target="#myModal">Calculate</button>
+    <button class="btn btn-warning" type="button" id="calculate-shipping" data-toggle="modal" data-target="#shippingModal">Calculate</button>
     <!--<img src="/img/yt-icon-rect.gif" class="youtube-icon" th:attr="data-prod-id=${prod.getId()}, data-prod-name=${prod.getName()}" data-toggle="modal" data-target="#shippingModal"/>-->
     <!-- Modal -->
     <div id="shippingModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
@@ -18,13 +18,16 @@
                 </div>
                 <div class="modal-body">
                     <div class="radio">
-                        <label><input type="radio" name="optradio">Option 1</input>i</label>
+                        <label id="express"></label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="optradio">Option 2</input></label>
+                        <label id="truck"></label>
                     </div>
-                    <div class="radio disabled">
-                        <label><input type="radio" name="optradio">Option 3</input></label>
+                    <div class="radio">
+                        <label id="truckhighway"></label>
+                    </div>
+                    <div class="radio">
+                        <label id="timeMachine"></label>
                     </div>
                 </div>
                 <div class="modal-footer">
