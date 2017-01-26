@@ -6,8 +6,8 @@
     <tr>
         <td id="shipping-type">Shipping type</td>
         <td>1</td>
-        <td class="shipping-cost">0 USD</td>
-        <td class="shipping-cost">0 USD</td>
+        <td class="shipping-cost" th:text="*{shipping != null}? *{shipping.getPrice()} +'' : ''"></td>
+        <td class="shipping-cost" th:text="*{shipping != null}? *{shipping.getPrice()} +'' : ''"></td>
     </tr>
 </div>
 
