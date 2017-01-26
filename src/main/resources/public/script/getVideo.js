@@ -6,17 +6,28 @@ $(document).ready(function() {
     $('#youtube-icon').click(sendData)
     });
 
-var sendData = function() {
-    console.log("sdéjklfélkasd");
-    var prodId = $('#youtube-icon').data("prod-id");
-    console.log(prodId);
-    $.ajax({
-    url: '/getvideo/' + prodId,
-    method: 'POST'
-    // success:function(response){
-    })
 
-};
-
-
-
+    var sendData = function (button) {
+        $('.loading').show();
+        var prodId = $(button).data("prod-id");
+        var prodName = $(button).data("prod-name");
+        $('.modal-header').html("Review of " + prodName);
+        $.ajax({
+            url: '/getvideo?id=' + prodId,
+            method: 'GET',
+            dataType: "text",
+            success: function (data) {
+                $('.loading').hide();
+                $('.video-body').html(data);
+            },
+            error: function (request, errorType, errorMessage) {
+                $('.loading').hide();
+                $('.video-body').html(errorMessage);
+            },
+            complete: function () {
+                $('.modal-close').on('click', function () {
+                    $('.video-body').empty();
+                });
+            }
+        });
+    };
