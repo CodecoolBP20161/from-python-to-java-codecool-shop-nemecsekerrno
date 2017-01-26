@@ -3,9 +3,10 @@
  */
 
 $(document).ready(function() {
-    $('#youtube-icon').click(sendData)
+    $('.youtube-icon').on('click', function () {
+        sendData(this);
     });
-
+});
 
     var sendData = function (button) {
         $('.loading').show();
@@ -31,3 +32,4 @@ $(document).ready(function() {
             }
         });
     };
+

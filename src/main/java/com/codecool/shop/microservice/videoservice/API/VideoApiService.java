@@ -14,7 +14,7 @@ import java.net.URISyntaxException;
  * Created by shevah on 24/01/17.
  */
 public class VideoApiService {
-    private static final String SERVICE_URL = "http://localhost:60000";
+    private static final String SERVICE_URL = "http://localhost:60000/apivideos";
 
     private static VideoApiService INSTANCE;
 
@@ -26,11 +26,16 @@ public class VideoApiService {
     }
 
     public String getVideo(String productName) throws URISyntaxException, IOException {
-        String response = execute(new URIBuilder(SERVICE_URL + "/apivideos?search=" + productName).build());
+        URIBuilder builder = new URIBuilder(SERVICE_URL).addParameter("search", productName);
+        String response = execute(builder.build());
         JSONArray rawData = new JSONArray(response);
-        JSONObject review = new JSONObject(rawData.get(1).toString());
-        String embedCode = review.getString("embed code");
-        return embedCode;
+        if (rawData.length() < 1) {
+            return "<h3 class=\"no-video\">No review video found, sorry</h3>";
+        } else {
+            JSONObject review = new JSONObject(rawData.get(1).toString());
+            String embedCode = review.getString("embed code");
+            return embedCode;
+        }
     }
 
     private String execute(URI uri) throws IOException {

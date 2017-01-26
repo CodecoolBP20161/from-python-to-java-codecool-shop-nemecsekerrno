@@ -4,23 +4,23 @@
 <body>
 <div th:fragment="videomodal" class="col-xs-12 col-md-2" id="youtube-modal">
     <!-- Trigger the modal with a button -->
-    <img src="/img/yt-icon-rect.gif" id="youtube-icon" th:attr="data-prod-id=${prod.getId()}" data-toggle="modal" data-target="#myModal"/>
+    <img src="/img/yt-icon-rect.gif" class="youtube-icon" th:attr="data-prod-id=${prod.getId()}, data-prod-name=${prod.getName()}" data-toggle="modal" data-target="#myModal"/>
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
+    <div id="myModal" class="modal fade" role="dialog"  data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" th:text="'Review of ' + ${prod.getId()}"></h4>
+                    <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
                     <img class="loading" src="/img/loading_icon.gif"/>
                     <div class="video-body"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default modal-close" data-dismiss="modal">Close</button>
                 </div>
             </div>
 
