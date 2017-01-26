@@ -11,7 +11,7 @@ IntelliJ can auto-install the dependencies from the pom.xml
 * (create a database manually, named codecoolshop)
 * run create_tables.sql (src/main/resources/sql/) to create the tables
 * set your database username and password in DBConnection (src/main/java/com/codecool/shop/controller/)
-* run PopulateData (src/main/java/) to fill up the tables
+* run PopulateData (src/main/java/com.codecool.shop) to fill up the tables
 
 # before running tests
 * (create a database manually, named codecoolshop)
