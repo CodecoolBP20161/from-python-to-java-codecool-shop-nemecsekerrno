@@ -33,13 +33,18 @@ public class CartController {
     public ModelAndView renderCartWithShipping(Request req, Response res) {
         cart = req.session().attribute("cart");
         float shippingCost = Float.parseFloat(req.queryParams("shippingcost"));
-        if (cart.getShippingOption() == null) {
-            Shipping shipping = new Shipping("Shipping", "Shipping", shippingCost, "USD");
-            cart.addShipping(shipping);
-        } else {
-            cart.getShippingOption().setDefaultPrice(shippingCost);
+        try {
+            if (cart.getShippingOption() == null) {
+                Shipping shipping = new Shipping("Shipping", "Shipping", shippingCost, "USD");
+                cart.addShipping(shipping);
+            } else {
+                cart.getShippingOption().setDefaultPrice(shippingCost);
+            }
+            params.put("shipping", cart.getShippingOption());
+            return renderCart(req, res);
+        } catch (Exception e) {
+            res.redirect(UrlController.getLastURL(req));
+            return null;
         }
-        params.put("shipping", cart.getShippingOption());
-        return renderCart(req, res);
     }
 }
