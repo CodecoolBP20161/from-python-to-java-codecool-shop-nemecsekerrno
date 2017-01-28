@@ -21,14 +21,15 @@ $(document).ready(function() {
                 $('.loading').hide();
                 $('.video-body').html(data);
             },
-            error: function(request, errorType, errorMessage) {
-                alert('Error: ' + errorMessage);
+            error: function (request, errorType, errorMessage) {
+                $('.loading').hide();
+                $('.video-body').html(errorMessage);
             },
-            complete: function() {
-                $('.modal-close').on('click', function () {
-                    $('iframe').remove();
+            complete: function () {
+                $('#video-modal').on('hidden.bs.modal', function () {
+                    $('.video-body').empty();
                 });
             }
         });
-
     };
+

@@ -4,9 +4,9 @@
 <body>
 <div th:fragment="videomodal" class="col-xs-12 col-md-2" id="youtube-modal">
     <!-- Trigger the modal with a button -->
-    <img src="/img/yt-icon-rect.gif" class="youtube-icon" th:attr="data-prod-id=${prod.getId()}, data-prod-name=${prod.getName()}" data-toggle="modal" data-target="#myModal"/>
+    <img src="/img/yt-icon-rect.gif" class="youtube-icon" th:attr="data-prod-id=${prod.getId()}, data-prod-name=${prod.getName()}" data-toggle="modal" data-target="#video-modal"/>
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div id="video-modal" class="modal fade" role="dialog" tabindex="-1">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -16,10 +16,8 @@
                     <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
-                    <img class="loading" src="/img/loading_icon.gif"></img>
-                    <div class="video-body">
-
-                    </div>
+                    <img class="loading" src="/img/loading_icon.gif"/>
+                    <div class="video-body"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default modal-close" data-dismiss="modal">Close</button>

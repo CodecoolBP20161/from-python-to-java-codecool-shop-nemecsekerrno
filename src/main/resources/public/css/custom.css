@@ -28,8 +28,9 @@
     right: 25px;
 }
 
-.form-control {
-    width: 180%; !important;
+.form-control,
+.input-group {
+    width: 120%; !important;
 }
 
 .glyphicon {
